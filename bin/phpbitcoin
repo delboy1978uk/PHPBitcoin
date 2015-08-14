@@ -1,0 +1,33 @@
+#!/usr/bin/env php
+<?php
+    if(count($argv) == 1)
+        {
+            echo "
+  _____  _    _ _____  ____  _ _            _
+ |  __ \| |  | |  __ \|  _ \(_) |          (_)
+ | |__) | |__| | |__) | |_) |_| |_ ___ ___  _ _ __
+ |  ___/|  __  |  ___/|  _ <| | __/ __/ _ \| | '_ \
+ | |    | |  | | |    | |_) | | || (_| (_) | | | | |
+ |_|    |_|  |_|_|    |____/|_|\__\___\___/|_|_| |_|
+
+        ";
+        echo "\n\nPHPBitcoin\n";
+        echo "======================================\n\n";
+        echo "Usage: ./phpbitcoin command\n\n";
+        echo " \n";
+        exit;
+    }
+
+    require_once('../vendor/autoload.php');
+
+    echo "\n";
+
+    use Del;
+    try {
+        $btc = new Bitcoin();
+        echo $btc->blah();
+    }
+    catch(Exception $e){
+        echo "There was a problem. \n".$e->getMessage()."\n\n";
+    }
+    echo "\n";
