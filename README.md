@@ -3,6 +3,9 @@
 A PHP service for connecting to bitcoind. Also compatible with Zend Framework 2
 ##Usage
 still in development
+*tests
+*basic usage
+*zf2 module
 ##Installing bitcoind for developing with
 puPHPet files for Vagrant included. Just vagrant up, vagrant ssh, then install Bitcoin. Unfortunately the ability to add custom repositories is not in puPHPet (yet. see https://github.com/puphpet/puphpet/issues/142)
 ```
