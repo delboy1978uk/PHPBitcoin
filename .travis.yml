@@ -28,7 +28,12 @@ before_script:
   - sudo apt-get update
   - sudo apt-get remove libboost-all-dev
   - sudo apt-get autoremove
-  - sudo apt-get -f install libboost-all-dev libdb4.8-dev libdb4.8++-dev bitcoind
+  - sudo apt-get -f install libboost1.46-dev
+  - sudo apt-get -f install libboost-dev
+  - sudo apt-get -f install libboost-all-dev
+  - sudo apt-get -f libdb4.8-dev 
+  - sudo apt-get -f libdb4.8++-dev
+  - sudo apt-get -f bitcoind
   -  cd ~
   - mkdir .bitcoin
   - cd .bitcoin
