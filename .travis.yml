@@ -30,8 +30,11 @@ before_script:
   - sudo apt-get autoremove
   - sudo apt-get -f install libboost1.46-dev
   - sudo apt-get -f install libboost-dev
+  - sudo apt-get -f install libboost-graph-parallel-dev
+  - sudo apt-get -f install libboost-mpi-dev
+  - sudo apt-get -f install libboost-mpi-python-dev
   - sudo apt-get -f install libboost-all-dev
-  - sudo apt-get -f libdb4.8-dev 
+  - sudo apt-get -f libdb4.8-dev
   - sudo apt-get -f libdb4.8++-dev
   - sudo apt-get -f bitcoind
   -  cd ~
