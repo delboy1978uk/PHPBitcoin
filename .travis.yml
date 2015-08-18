@@ -29,10 +29,7 @@ before_script:
   - sudo apt-get autoremove
   - sudo dpkg -l | grep libboost
   - sudo apt-cache search libboost-graph-parallel
-  - sudo apt-get -f install libboost-dev
-  - sudo apt-get -f install libboost-graph-parallel-dev
-  - sudo apt-get -f install libboost-mpi-dev
-  - sudo apt-get -f install libboost-mpi-python-dev
+  - sudo dpkg --purge libboost1.49-dev
   - sudo apt-get -f install libboost-all-dev
   - sudo apt-get -f libdb4.8-dev
   - sudo apt-get -f libdb4.8++-dev
