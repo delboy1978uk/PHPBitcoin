@@ -19,5 +19,10 @@
         "psr-4":{
             "Del\\":"src/"
         }
+    },
+    "config":{
+        "github-oauth":{
+            "github.com":"68c309c46f6487957980d5537f39eb5b3d9eccbb"
+        }
     }
 }
