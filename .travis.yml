@@ -39,6 +39,7 @@ before_script:
   - echo "rpcuser=phpbitcoin" >> bitcoin.conf
   - echo "rpcpassword=COMPLETELYrandomPASSWORD" >> bitcoin.conf
   - bitcoind
+  - cd ..
 
 script:
   - php vendor/bin/codecept run unit --coverage-xml --env travis
