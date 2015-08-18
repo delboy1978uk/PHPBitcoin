@@ -27,6 +27,7 @@ before_script:
   - sudo add-apt-repository --yes ppa:bitcoin/bitcoin
   - sudo apt-get update
   - sudo apt-get autoremove
+  - sudo dpkg -l | grep libboost
   - sudo apt-get -f install libboost-all-dev
   - sudo apt-get -f libdb4.8-dev
   - sudo apt-get -f libdb4.8++-dev
