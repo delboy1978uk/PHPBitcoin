@@ -4,11 +4,11 @@
         {
             echo "
   _____  _    _ _____  ____  _ _            _
- |  __ \| |  | |  __ \|  _ \(_) |          (_)
+ |  __ \\| |  | |  __ \\|  _ \\(_) |          (_)
  | |__) | |__| | |__) | |_) |_| |_ ___ ___  _ _ __
- |  ___/|  __  |  ___/|  _ <| | __/ __/ _ \| | '_ \
+ |  ___/|  __  |  ___/|  _ <| | __/ __/ _ \\| | '_ \\
  | |    | |  | | |    | |_) | | || (_| (_) | | | | |
- |_|    |_|  |_|_|    |____/|_|\__\___\___/|_|_| |_|
+ |_|    |_|  |_|_|    |____/|_|\\__\\___\\___/|_|_| |_|
 
         ";
         echo "\n\nPHPBitcoin\n";
@@ -22,12 +22,22 @@
 
     echo "\n";
 
-    use Del;
+    use Del\Bitcoin;
+    use GuzzleHttp\Exception\RequestException;
+
     try {
-        $btc = new Bitcoin();
-        echo $btc->blah();
+        $btc = new Bitcoin([
+            'username' => 'phpbitcoin',
+            'password' => 'COMPLETELYrandomPASSWORD',
+            'host' => '127.0.0.1',
+            'port' => '18332',
+            'protocol' => 'http',
+        ]);
+        echo $btc->getInfo();
     }
-    catch(Exception $e){
+    catch (RequestException $e) {
         echo "There was a problem. \n".$e->getMessage()."\n\n";
+        echo $e->getRequest()->getBody() . "\n";
+        echo $e->hasResponse() ? $e->getResponse()->getBody() . "\n" : null;
     }
     echo "\n";

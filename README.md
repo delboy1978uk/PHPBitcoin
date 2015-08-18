@@ -26,7 +26,7 @@ testnet=1
 rpcuser=phpbitcoin
 rpcpassword=COMPLETELYrandomPASSWORD
 ```
-You can use the testnet or not, up to you! Finally run bitcoind by simply typing it
+You should use the testnet option if developing, tests connect on port 18332! Finally run bitcoind by simply typing it
 ```
 bitcoind
 ```

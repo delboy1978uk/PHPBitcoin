@@ -20,9 +20,17 @@ class Bitcoin
 
     private $host;
 
-    public function __construct()
+    private $auth_digest;
+
+    private $id;
+
+    public function __construct($config = null)
     {
-        $this->client = new Client();
+        if($config)
+        {
+            $this->setConfig($config);
+        }
+        $this->id = 0;
     }
 
     /**
@@ -34,6 +42,8 @@ class Bitcoin
     {
         $this->config = $config;
         $this->host = $config['protocol'].'://'.$config['host'].':'.$config['port'];
+        $this->auth_digest = base64_encode($config['username'].':'.$config['password']);
+        $this->client = new Client(['base_uri' => $this->host]);
         return $this;
     }
 
@@ -57,5 +67,41 @@ class Bitcoin
     private function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * Bitcoin's hello world
+     * @return string
+     */
+    public function getInfo()
+    {
+        return $this->send('getinfo');
+    }
+
+    /**
+     * @param $uri
+     * @param array $params
+     * @return mixed
+     */
+    private function send($uri, $params = [])
+    {
+        $this->id ++ ;
+        $response = $this->getClient()->post('/',[
+            'auth' => [
+                $this->getConfig()['username'],
+                $this->getConfig()['password'],
+            ],
+            'headers' => [
+                'Accept'     => 'application/json',
+                'Content-Type' => 'application/json-rpc',
+                'WWW-Authenticate' => 'Basic realm="jsonrpc"'
+            ],
+            'json' => [
+                'method' => $uri,
+                'params' => $params,
+                'id' => $this->id,
+            ],
+        ]);
+        return $response->getBody();
     }
 }

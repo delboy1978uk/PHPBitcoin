@@ -24,18 +24,18 @@ class BitcoinTest extends \Codeception\TestCase\Test
 
     protected function _before()
     {
-        // create a fresh bitcoin class before each test
-        $this->btc = new Bitcoin();
 
         $this->config = [
-            'username' => 'testuser',
-            'passsword' => '******',
-            'host' => 'localhost',
-            'port' => '8332',
+            'username' => 'phpbitcoin',
+            'password' => 'COMPLETELYrandomPASSWORD',
+            'host' => '127.0.0.1',
+            'port' => '18332',
             'protocol' => 'http',
-            'uri' => '',
             'ssl_certificate' => '',
         ];
+
+        // create a fresh bitcoin class before each test
+        $this->btc = new Bitcoin();
     }
 
     protected function _after()
@@ -51,6 +51,7 @@ class BitcoinTest extends \Codeception\TestCase\Test
      */
     public function testGetClient()
     {
+        $this->btc->setConfig($this->config);
         $client = $this->invokeMethod($this->btc,'getClient');
         $this->assertInstanceOf('GuzzleHttp\Client',$client);
     }
@@ -62,6 +63,13 @@ class BitcoinTest extends \Codeception\TestCase\Test
     {
         $this->btc->setConfig($this->config);
         $this->assertTrue(is_array($this->btc->getConfig()));
+    }
+
+    public function testGetInfo()
+    {
+        $this->btc->setConfig($this->config);
+        $info = json_decode($this->btc->getInfo(),true);
+        $this->assertArrayHasKey('connections',$info['result']);
     }
 
 

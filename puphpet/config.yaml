@@ -173,6 +173,8 @@ apache:
             port: '443'
             setenv:
                 - 'APPLICATION_ENV development'
+            setenvif:
+                 - 'Authorization "(.*)" HTTP_AUTHORIZATION=$1'
             custom_fragment: ''
             ssl: '0'
             ssl_cert: ''
