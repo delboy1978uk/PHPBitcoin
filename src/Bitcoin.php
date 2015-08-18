@@ -10,7 +10,7 @@ namespace Del;
 use Exception;
 use Del\Bitcoin\Api\Blockchain;
 use Del\Bitcoin\Api\Control;
-use Del\Bitcoin\Api\Generate;
+use Del\Bitcoin\Api\Generating;
 use Del\Bitcoin\Api\Mining;
 use Del\Bitcoin\Api\Network;
 use Del\Bitcoin\Api\RawTransaction;
@@ -30,7 +30,6 @@ class Bitcoin
     {
         is_array($config) ? $this->setConfig($config) : null;
         $this->api = [];
-        $this->id = 0;
     }
 
 
@@ -85,12 +84,12 @@ class Bitcoin
     }
 
     /**
-     * @return Generate
+     * @return Generating
      */
     public function getGeneratingApi()
     {
         if(!isset($this->api['generate'])){
-            $this->api['generate'] = new Generate($this->getConfig());
+            $this->api['generate'] = new Generating($this->getConfig());
         }
         return $this->api['generate'];
     }

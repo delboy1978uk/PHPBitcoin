@@ -11,6 +11,9 @@ use GuzzleHttp\Client;
 
 class AbstractApi
 {
+    /** @var array */
+    private $config;
+
     /** @var Client */
     private  $client;
 

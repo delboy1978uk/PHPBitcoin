@@ -118,7 +118,7 @@ class BitcoinTest extends \Codeception\TestCase\Test
     public function testGeneratingApi()
     {
         $api = $this->btc->getGeneratingApi();
-        $this->assertInstanceOf('Del\Bitcoin\Api\Generate',$api);
+        $this->assertInstanceOf('Del\Bitcoin\Api\Generating',$api);
     }
 
 
