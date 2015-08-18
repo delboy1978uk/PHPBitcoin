@@ -26,8 +26,9 @@ before_script:
   - sudo apt-get install python-software-properties
   - sudo add-apt-repository --yes ppa:bitcoin/bitcoin
   - sudo apt-get update
-  - sudo apt-get upgrade
-  - sudo apt-get install libboost-all-dev libdb4.8-dev libdb4.8++-dev bitcoind
+  - sudo apt-get remove libboost1.55-all-dev
+  - sudo apt-get autoremove
+  - sudo apt-get -f install libboost-all-dev libdb4.8-dev libdb4.8++-dev bitcoind
   -  cd ~
   - mkdir .bitcoin
   - cd .bitcoin
