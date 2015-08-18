@@ -27,9 +27,9 @@ before_script:
   - sudo add-apt-repository --yes ppa:bitcoin/bitcoin
   - sudo apt-get update
   - sudo apt-get autoremove
-  - sudo apt-get -f libdb4.8-dev
-  - sudo apt-get -f libdb4.8++-dev
-  - sudo apt-get -f bitcoind
+  - sudo apt-get -f install libdb4.8-dev
+  - sudo apt-get -f install libdb4.8++-dev
+  - sudo apt-get -f install bitcoind
   -  cd ~
   - mkdir .bitcoin
   - cd .bitcoin
