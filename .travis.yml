@@ -29,6 +29,7 @@ before_script:
   - sudo apt-get remove libboost-all-dev
   - sudo apt-get autoremove
   - sudo apt-get -f install libboost1.49-dev
+  - sudo apt-get -f install libboost-graph-parallel1.49-dev
   - sudo apt-get -f install libboost-dev
   - sudo apt-get -f install libboost-graph-parallel-dev
   - sudo apt-get -f install libboost-mpi-dev
