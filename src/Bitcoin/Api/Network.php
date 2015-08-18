@@ -8,7 +8,7 @@
 namespace Del\Bitcoin\Api;
 
 
-class Network
+class Network extends AbstractApi
 {
 
     public function addNode()

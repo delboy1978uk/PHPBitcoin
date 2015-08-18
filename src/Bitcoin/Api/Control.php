@@ -8,12 +8,12 @@
 namespace Del\Bitcoin\Api;
 
 
-class Control
+class Control extends AbstractApi
 {
 
     public function getInfo()
     {
-
+        return $this->send('getinfo');
     }
 
     public function help()

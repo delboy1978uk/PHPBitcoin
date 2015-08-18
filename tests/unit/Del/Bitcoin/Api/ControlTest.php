@@ -1,11 +1,10 @@
 <?php
 
-namespace Del;
+namespace Del\Bitcoin\Api;
 
 use ReflectionClass;
-use GuzzleHttp\Client;
 
-class BitcoinTest extends \Codeception\TestCase\Test
+class ControlTest extends \Codeception\TestCase\Test
 {
    /**
     * @var \UnitTester
@@ -13,9 +12,9 @@ class BitcoinTest extends \Codeception\TestCase\Test
     protected $tester;
 
     /**
-     * @var Bitcoin
+     * @var Control
      */
-    protected $btc;
+    protected $api;
 
     /**
      * @var array
@@ -34,23 +33,14 @@ class BitcoinTest extends \Codeception\TestCase\Test
             'ssl_certificate' => '',
         ];
 
-        // create a fresh bitcoin class before each test
-        $this->btc = new Bitcoin();
+        // create a fresh Control API class before each test
+        $this->api = new Control($this->config);
     }
 
     protected function _after()
     {
-        // unset the bitcoin class after each test
-        unset($this->btc);
-    }
-
-    /**
-     * Check config setting works
-     */
-    public function testGetandSetConfig()
-    {
-        $this->btc->setConfig($this->config);
-        $this->assertTrue(is_array($this->btc->getConfig()));
+        // unset the api class after each test
+        unset($this->api);
     }
 
 
@@ -58,21 +48,18 @@ class BitcoinTest extends \Codeception\TestCase\Test
     /**
      * Check config setting works
      */
-    public function testSetConfigThroughConstructor()
+    public function testGetClient()
     {
-        $this->btc = new Bitcoin($this->config);
-        $this->assertTrue(is_array($this->btc->getConfig()));
+        $client = $this->invokeMethod($this->api,'getClient');
+        $this->assertInstanceOf('GuzzleHttp\Client',$client);
     }
 
 
 
-    /**
-     * Check config setting works
-     */
-    public function testThrowsExceptionWhenNoConfigFile()
+    public function testGetInfo()
     {
-        $this->setExpectedException('Exception');
-        $this->btc->getConfig();
+        $info = json_decode($this->api->getInfo(),true);
+        $this->assertArrayHasKey('connections',$info['result']);
     }
 
 

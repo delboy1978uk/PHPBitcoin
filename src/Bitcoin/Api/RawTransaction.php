@@ -8,7 +8,7 @@
 namespace Del\Bitcoin\Api;
 
 
-class RawTransaction
+class RawTransaction extends AbstractApi
 {
 
     public function createRawTransaction()

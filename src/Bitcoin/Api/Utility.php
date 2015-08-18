@@ -8,7 +8,7 @@
 namespace Del\Bitcoin\Api;
 
 
-class Utility
+class Utility extends AbstractApi
 {
 
     public function createMultiSig()

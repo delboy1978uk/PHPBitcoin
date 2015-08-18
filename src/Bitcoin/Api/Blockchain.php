@@ -8,7 +8,7 @@
 namespace Del\Bitcoin\Api;
 
 
-class Blockchain
+class Blockchain extends AbstractApi
 {
 
     public function getBestBlockHash()

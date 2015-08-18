@@ -8,7 +8,7 @@
 namespace Del\Bitcoin\Api;
 
 
-class Wallet
+class Wallet extends AbstractApi
 {
     public function addMultiSigAddress()
     {

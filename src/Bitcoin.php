@@ -7,44 +7,30 @@
 
 namespace Del;
 
-use GuzzleHttp\Client;
-use Psr\Http\Message;
 use Exception;
+use Del\Bitcoin\Api\Blockchain;
+use Del\Bitcoin\Api\Control;
+use Del\Bitcoin\Api\Generate;
+use Del\Bitcoin\Api\Mining;
+use Del\Bitcoin\Api\Network;
+use Del\Bitcoin\Api\RawTransaction;
+use Del\Bitcoin\Api\Utility;
+use Del\Bitcoin\Api\Wallet;
 
 
 class Bitcoin
 {
+    /** @var array */
     private $config;
 
-    private $client;
-
-    private $host;
-
-    private $auth_digest;
-
-    private $id;
+    /** @var array */
+    private $api;
 
     public function __construct($config = null)
     {
-        if($config)
-        {
-            $this->setConfig($config);
-        }
+        is_array($config) ? $this->setConfig($config) : null;
+        $this->api = [];
         $this->id = 0;
-    }
-
-    /**
-     * @param array $config
-     * @return bool
-     * @throws \Exception
-     */
-    public function setConfig(array $config)
-    {
-        $this->config = $config;
-        $this->host = $config['protocol'].'://'.$config['host'].':'.$config['port'];
-        $this->auth_digest = base64_encode($config['username'].':'.$config['password']);
-        $this->client = new Client(['base_uri' => $this->host]);
-        return $this;
     }
 
 
@@ -58,50 +44,110 @@ class Bitcoin
         {
             throw new Exception('No configuration');
         }
-        return $this->config;
+        if($this->config['username'] && $this->config['password'])
+        {
+            return $this->config;
+        }
+        throw new Exception('Insufficient config data');
+    }
+
+
+    /**
+     * @param array $config
+     * @return $this
+     */
+    public function setConfig(array $config)
+    {
+        $this->config = $config;
+        return $this;
     }
 
     /**
-     * @return Client
+     * @return Blockchain
      */
-    private function getClient()
+    public function getBlockchainApi()
     {
-        return $this->client;
+        if(!$this->api['blockchain']){
+            $this->api['blockchain'] = new Blockchain($this->config);
+        }
+        return $this->api['blockchain'];
     }
 
     /**
-     * Bitcoin's hello world
-     * @return string
+     * @return Control
      */
-    public function getInfo()
+    public function getControlApi()
     {
-        return $this->send('getinfo');
+        if(!$this->api['control']){
+            $this->api['control'] = new Control($this->config);
+        }
+        return $this->api['control'];
     }
 
     /**
-     * @param $uri
-     * @param array $params
-     * @return mixed
+     * @return Generate
      */
-    private function send($uri, $params = [])
+    public function getGeneratingApi()
     {
-        $this->id ++ ;
-        $response = $this->getClient()->post('/',[
-            'auth' => [
-                $this->getConfig()['username'],
-                $this->getConfig()['password'],
-            ],
-            'headers' => [
-                'Accept'     => 'application/json',
-                'Content-Type' => 'application/json-rpc',
-                'WWW-Authenticate' => 'Basic realm="jsonrpc"'
-            ],
-            'json' => [
-                'method' => $uri,
-                'params' => $params,
-                'id' => $this->id,
-            ],
-        ]);
-        return $response->getBody();
+        if(!$this->api['generate']){
+            $this->api['generate'] = new Generate($this->config);
+        }
+        return $this->api['generate'];
     }
+
+    /**
+     * @return Mining
+     */
+    public function getMiningApi()
+    {
+        if(!$this->api['mining']){
+            $this->api['mining'] = new Mining($this->config);
+        }
+        return $this->api['mining'];
+    }
+
+    /**
+     * @return Network
+     */
+    public function getNetworkApi()
+    {
+        if(!$this->api['network']){
+            $this->api['network'] = new Network($this->config);
+        }
+        return $this->api['network'];
+    }
+
+    /**
+     * @return RawTransaction
+     */
+    public function getRawTransactionApi()
+    {
+        if(!$this->api['raw_transaction']){
+            $this->api['raw_transaction'] = new RawTransaction($this->config);
+        }
+        return $this->api['raw_transaction'];
+    }
+
+    /**
+     * @return Utility
+     */
+    public function getUtilityApi()
+    {
+        if(!$this->api['utility']){
+            $this->api['utility'] = new Utility($this->config);
+        }
+        return $this->api['utility'];
+    }
+
+    /**
+     * @return Wallet
+     */
+    public function getWalletApi()
+    {
+        if(!$this->api['wallet']){
+            $this->api['wallet'] = new Wallet($this->config);
+        }
+        return $this->api['wallet'];
+    }
+
 }

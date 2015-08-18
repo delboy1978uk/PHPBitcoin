@@ -8,7 +8,7 @@
 namespace Del\Bitcoin\Api;
 
 
-class Mining
+class Mining extends AbstractApi
 {
 
     public function getBlockTemplate()

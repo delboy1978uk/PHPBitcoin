@@ -8,7 +8,7 @@
 namespace Del\Bitcoin\Api;
 
 
-class Generate
+class Generate extends AbstractApi
 {
 
     public function generate()
