@@ -3,6 +3,8 @@
 namespace Del\Bitcoin\Api;
 
 use ReflectionClass;
+use AspectMock\Test;
+use GuzzleHttp\Psr7\Response;
 
 class ControlTest extends \Codeception\TestCase\Test
 {
@@ -55,11 +57,38 @@ class ControlTest extends \Codeception\TestCase\Test
     }
 
 
-
+    /**
+     *  test bitcoins hello world call
+     */
     public function testGetInfo()
     {
         $info = json_decode($this->api->getInfo(),true);
         $this->assertArrayHasKey('connections',$info['result']);
+    }
+
+
+    /**
+     *  test bitcoin help
+     */
+    public function testHelp()
+    {
+        $help = json_decode($this->api->help(),true);
+        $this->assertArrayHasKey('result',$help);
+        $result = $help['result'];
+        $this->assertContains('== Blockchain ==',$result);
+    }
+
+
+    /**
+     *  Test shutting down the bitcoin server
+     *  Fake client so it doesnt really shut down
+     */
+    public function testStop()
+    {
+        Test::double('Del\Bitcoin\Api\AbstractApi',['send' => null]);
+        $this->api = new Control($this->config);
+        $result = $this->api->stop();
+        $this->assertNull($result);
     }
 
 

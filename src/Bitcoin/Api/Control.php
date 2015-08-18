@@ -18,11 +18,11 @@ class Control extends AbstractApi
 
     public function help()
     {
-
+        return $this->send('help');
     }
 
     public function stop()
     {
-
+        return $this->send('stop');
     }
 }

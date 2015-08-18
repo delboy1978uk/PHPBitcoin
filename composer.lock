@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "817351a7abd51b6bcde3ae9e278a8bee",
+    "hash": "3be2d9f912d9cde2dd12b40d08d29f3f",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "24cbdfb0651564f9021cd7af81e484833a649d74"
+                "reference": "d687700d601f8b5f19b99ffc1c0f6af835a3c7b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/24cbdfb0651564f9021cd7af81e484833a649d74",
-                "reference": "24cbdfb0651564f9021cd7af81e484833a649d74",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/d687700d601f8b5f19b99ffc1c0f6af835a3c7b7",
+                "reference": "d687700d601f8b5f19b99ffc1c0f6af835a3c7b7",
                 "shasum": ""
             },
             "require": {
@@ -66,20 +66,20 @@
                 "rest",
                 "web service"
             ],
-            "time": "2015-08-14 06:50:48"
+            "time": "2015-08-15 20:48:15"
         },
         {
             "name": "guzzlehttp/promises",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "2ee5bc7f1a92efecc90da7f6711a53a7be26b5b7"
+                "reference": "97fe7210def29451ec74923b27e552238defd75a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/2ee5bc7f1a92efecc90da7f6711a53a7be26b5b7",
-                "reference": "2ee5bc7f1a92efecc90da7f6711a53a7be26b5b7",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/97fe7210def29451ec74923b27e552238defd75a",
+                "reference": "97fe7210def29451ec74923b27e552238defd75a",
                 "shasum": ""
             },
             "require": {
@@ -99,7 +99,7 @@
                     "GuzzleHttp\\Promise\\": "src/"
                 },
                 "files": [
-                    "src/functions.php"
+                    "src/functions_include.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -117,20 +117,20 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2015-06-24 16:16:25"
+            "time": "2015-08-15 19:37:21"
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "af0e1758de355eb113917ad79c3c0e3604bce4bd"
+                "reference": "4ef919b0cf3b1989523138b60163bbcb7ba1ff7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/af0e1758de355eb113917ad79c3c0e3604bce4bd",
-                "reference": "af0e1758de355eb113917ad79c3c0e3604bce4bd",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/4ef919b0cf3b1989523138b60163bbcb7ba1ff7e",
+                "reference": "4ef919b0cf3b1989523138b60163bbcb7ba1ff7e",
                 "shasum": ""
             },
             "require": {
@@ -154,7 +154,7 @@
                     "GuzzleHttp\\Psr7\\": "src/"
                 },
                 "files": [
-                    "src/functions.php"
+                    "src/functions_include.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -175,7 +175,7 @@
                 "stream",
                 "uri"
             ],
-            "time": "2015-06-24 19:55:15"
+            "time": "2015-08-15 19:32:36"
         },
         {
             "name": "psr/http-message",
@@ -229,27 +229,114 @@
     ],
     "packages-dev": [
         {
+            "name": "andrewsville/php-token-reflection",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Andrewsville/PHP-Token-Reflection.git",
+                "reference": "e6d0ac2baf66cdf154be34c3d2a2aa1bd4b426ee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Andrewsville/PHP-Token-Reflection/zipball/e6d0ac2baf66cdf154be34c3d2a2aa1bd4b426ee",
+                "reference": "e6d0ac2baf66cdf154be34c3d2a2aa1bd4b426ee",
+                "shasum": ""
+            },
+            "require": {
+                "ext-tokenizer": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "TokenReflection": "./"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3"
+            ],
+            "authors": [
+                {
+                    "name": "Ondřej Nešpor",
+                    "homepage": "https://github.com/andrewsville"
+                },
+                {
+                    "name": "Jaroslav Hanslík",
+                    "homepage": "https://github.com/kukulich"
+                }
+            ],
+            "description": "Library emulating the PHP internal reflection using just the tokenized source code.",
+            "homepage": "http://andrewsville.github.com/PHP-Token-Reflection/",
+            "keywords": [
+                "library",
+                "reflection",
+                "tokenizer"
+            ],
+            "time": "2014-08-06 16:37:08"
+        },
+        {
+            "name": "codeception/aspect-mock",
+            "version": "0.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Codeception/AspectMock.git",
+                "reference": "2b80b5068942bb23086b767cbace18fecdee7e76"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Codeception/AspectMock/zipball/2b80b5068942bb23086b767cbace18fecdee7e76",
+                "reference": "2b80b5068942bb23086b767cbace18fecdee7e76",
+                "shasum": ""
+            },
+            "require": {
+                "goaop/framework": "0.6.*",
+                "php": ">=5.4.0",
+                "symfony/finder": "~2.4"
+            },
+            "require-dev": {
+                "codeception/base": "~2.1",
+                "codeception/specify": "~0.3",
+                "codeception/verify": "~0.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "AspectMock": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Michael Bodnarchuk",
+                    "email": "davert.php@mailican.com"
+                }
+            ],
+            "description": "Experimental Mocking Framework powered by Aspects",
+            "time": "2015-07-14 23:25:32"
+        },
+        {
             "name": "codeception/codeception",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "903f641510d2beb5852bf879e69ede6aaea5b7c9"
+                "reference": "0c12ecb7520158de93dd954b1458d2b10d500dbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/903f641510d2beb5852bf879e69ede6aaea5b7c9",
-                "reference": "903f641510d2beb5852bf879e69ede6aaea5b7c9",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/0c12ecb7520158de93dd954b1458d2b10d500dbf",
+                "reference": "0c12ecb7520158de93dd954b1458d2b10d500dbf",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "facebook/webdriver": ">=1.0.1",
+                "facebook/webdriver": "~0.4|~0.5",
                 "guzzlehttp/guzzle": ">=4.0|<7.0",
                 "guzzlehttp/psr7": "~1.0",
                 "php": ">=5.4.0",
-                "phpunit/phpunit": "~4.8.0",
+                "phpunit/phpunit": "~4.7.0",
                 "symfony/browser-kit": "~2.4",
                 "symfony/console": "~2.4",
                 "symfony/css-selector": "~2.4",
@@ -278,7 +365,9 @@
             ],
             "type": "library",
             "extra": {
-                "branch-alias": []
+                "branch-alias": {
+                    "dev-master": "2.1-dev"
+                }
             },
             "autoload": {
                 "psr-4": {
@@ -306,7 +395,75 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2015-08-09 20:00:21"
+            "time": "2015-06-22 20:08:31"
+        },
+        {
+            "name": "doctrine/annotations",
+            "version": "v1.2.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/annotations.git",
+                "reference": "f4a91702ca3cd2e568c3736aa031ed00c3752af4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/f4a91702ca3cd2e568c3736aa031ed00c3752af4",
+                "reference": "f4a91702ca3cd2e568c3736aa031ed00c3752af4",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/lexer": "1.*",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "doctrine/cache": "1.*",
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Doctrine\\Common\\Annotations\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "Docblock Annotations Parser",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "annotations",
+                "docblock",
+                "parser"
+            ],
+            "time": "2015-06-17 12:21:22"
         },
         {
             "name": "doctrine/instantiator",
@@ -363,39 +520,91 @@
             "time": "2015-06-14 21:17:01"
         },
         {
-            "name": "facebook/webdriver",
-            "version": "1.0.2",
+            "name": "doctrine/lexer",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/facebook/php-webdriver.git",
-                "reference": "fe1bbbc5dde804d08a8593f1d9d0d3b05f5c84f5"
+                "url": "https://github.com/doctrine/lexer.git",
+                "reference": "83893c552fd2045dd78aef794c31e694c37c0b8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/php-webdriver/zipball/fe1bbbc5dde804d08a8593f1d9d0d3b05f5c84f5",
-                "reference": "fe1bbbc5dde804d08a8593f1d9d0d3b05f5c84f5",
+                "url": "https://api.github.com/repos/doctrine/lexer/zipball/83893c552fd2045dd78aef794c31e694c37c0b8c",
+                "reference": "83893c552fd2045dd78aef794c31e694c37c0b8c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Doctrine\\Common\\Lexer\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "Base library for a lexer that can be used in Top-Down, Recursive Descent Parsers.",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "lexer",
+                "parser"
+            ],
+            "time": "2014-09-09 13:34:57"
+        },
+        {
+            "name": "facebook/webdriver",
+            "version": "v0.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facebook/php-webdriver.git",
+                "reference": "2c5b305ea91b00ebbc433ad1663b7f16c1b31ec5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facebook/php-webdriver/zipball/2c5b305ea91b00ebbc433ad1663b7f16c1b31ec5",
+                "reference": "2c5b305ea91b00ebbc433ad1663b7f16c1b31ec5",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.19"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.6.*"
-            },
-            "suggest": {
-                "phpdocumentor/phpdocumentor": "2.*"
+                "phpdocumentor/phpdocumentor": "2.*",
+                "phpunit/phpunit": "3.7.*"
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Facebook\\WebDriver\\": "lib/"
-                }
+                "classmap": [
+                    "lib/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Apache-2.0"
             ],
-            "description": "A PHP client for WebDriver",
+            "description": "A php client for WebDriver",
             "homepage": "https://github.com/facebook/php-webdriver",
             "keywords": [
                 "facebook",
@@ -403,7 +612,122 @@
                 "selenium",
                 "webdriver"
             ],
-            "time": "2015-08-12 20:21:31"
+            "time": "2015-02-09 19:39:34"
+        },
+        {
+            "name": "goaop/framework",
+            "version": "0.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/goaop/framework.git",
+                "reference": "4411e951d06d7041e3128fefd6fe6a0a344cd1ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/goaop/framework/zipball/4411e951d06d7041e3128fefd6fe6a0a344cd1ba",
+                "reference": "4411e951d06d7041e3128fefd6fe6a0a344cd1ba",
+                "shasum": ""
+            },
+            "require": {
+                "andrewsville/php-token-reflection": "~1.3",
+                "doctrine/annotations": "~1.0",
+                "jakubledl/dissect": "~1.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "symfony/console": "~2.1"
+            },
+            "suggest": {
+                "symfony/console": "Enables the usage of the command-line tool."
+            },
+            "bin": [
+                "bin/warmup"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Go\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lisachenko Alexander",
+                    "homepage": "https://github.com/lisachenko"
+                }
+            ],
+            "description": "Library for aspect-oriented programming in PHP.",
+            "homepage": "http://go.aopphp.com/",
+            "keywords": [
+                "aop",
+                "aspect",
+                "library",
+                "php"
+            ],
+            "time": "2015-07-05 11:37:33"
+        },
+        {
+            "name": "jakubledl/dissect",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jakubledl/dissect.git",
+                "reference": "d3a391de31e45a247e95cef6cf58a91c05af67c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jakubledl/dissect/zipball/d3a391de31e45a247e95cef6cf58a91c05af67c4",
+                "reference": "d3a391de31e45a247e95cef6cf58a91c05af67c4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "symfony/console": "~2.1"
+            },
+            "suggest": {
+                "symfony/console": "for the command-line tool"
+            },
+            "bin": [
+                "bin/dissect.php",
+                "bin/dissect"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Dissect": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "unlicense"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Lédl",
+                    "email": "jakubledl@gmail.com"
+                }
+            ],
+            "description": "Lexing and parsing in pure PHP",
+            "homepage": "https://github.com/jakubledl/dissect",
+            "keywords": [
+                "ast",
+                "lexing",
+                "parser",
+                "parsing"
+            ],
+            "time": "2013-01-29 21:29:14"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -707,16 +1031,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.4.5",
+            "version": "1.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "09fc125d65c344c53a7c7ad8f261e3f3af9f76c5"
+                "reference": "3ab72c62e550370a6cd5dc873e1a04ab57562f5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/09fc125d65c344c53a7c7ad8f261e3f3af9f76c5",
-                "reference": "09fc125d65c344c53a7c7ad8f261e3f3af9f76c5",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/3ab72c62e550370a6cd5dc873e1a04ab57562f5b",
+                "reference": "3ab72c62e550370a6cd5dc873e1a04ab57562f5b",
                 "shasum": ""
             },
             "require": {
@@ -752,20 +1076,20 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2015-08-13 14:23:08"
+            "time": "2015-08-16 08:51:00"
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.3",
+            "version": "4.7.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "fd3050e26e3105f416d74c4d33aea659b406c59d"
+                "reference": "9b97f9d807b862c2de2a36e86690000801c85724"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fd3050e26e3105f416d74c4d33aea659b406c59d",
-                "reference": "fd3050e26e3105f416d74c4d33aea659b406c59d",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9b97f9d807b862c2de2a36e86690000801c85724",
+                "reference": "9b97f9d807b862c2de2a36e86690000801c85724",
                 "shasum": ""
             },
             "require": {
@@ -775,7 +1099,7 @@
                 "ext-reflection": "*",
                 "ext-spl": "*",
                 "php": ">=5.3.3",
-                "phpspec/prophecy": "^1.3.1",
+                "phpspec/prophecy": "~1.3,>=1.3.1",
                 "phpunit/php-code-coverage": "~2.1",
                 "phpunit/php-file-iterator": "~1.4",
                 "phpunit/php-text-template": "~1.2",
@@ -783,7 +1107,7 @@
                 "phpunit/phpunit-mock-objects": "~2.3",
                 "sebastian/comparator": "~1.1",
                 "sebastian/diff": "~1.2",
-                "sebastian/environment": "~1.3",
+                "sebastian/environment": "~1.2",
                 "sebastian/exporter": "~1.2",
                 "sebastian/global-state": "~1.0",
                 "sebastian/version": "~1.0",
@@ -798,7 +1122,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.8.x-dev"
+                    "dev-master": "4.7.x-dev"
                 }
             },
             "autoload": {
@@ -824,7 +1148,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-08-10 09:16:56"
+            "time": "2015-07-13 11:28:34"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1636,6 +1960,8 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.4.0"
+    },
     "platform-dev": []
 }
