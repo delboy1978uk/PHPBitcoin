@@ -35,7 +35,7 @@ class BitcoinTest extends \Codeception\TestCase\Test
         ];
 
         // create a fresh bitcoin class before each test
-        $this->btc = new Bitcoin();
+        $this->btc = new Bitcoin($this->config);
     }
 
     protected function _after()
@@ -49,6 +49,7 @@ class BitcoinTest extends \Codeception\TestCase\Test
      */
     public function testGetandSetConfig()
     {
+        $this->btc = new Bitcoin();
         $this->btc->setConfig($this->config);
         $this->assertTrue(is_array($this->btc->getConfig()));
     }
@@ -60,7 +61,6 @@ class BitcoinTest extends \Codeception\TestCase\Test
      */
     public function testSetConfigThroughConstructor()
     {
-        $this->btc = new Bitcoin($this->config);
         $this->assertTrue(is_array($this->btc->getConfig()));
     }
 
@@ -72,7 +72,108 @@ class BitcoinTest extends \Codeception\TestCase\Test
     public function testThrowsExceptionWhenNoConfigFile()
     {
         $this->setExpectedException('Exception');
+        $this->btc = new Bitcoin();
         $this->btc->getConfig();
+    }
+
+
+
+    /**
+     * Check config setting works
+     */
+    public function testThrowsExceptionWhenMissingRequiredConfig()
+    {
+        $this->setExpectedException('Exception');
+        $this->btc = new Bitcoin([]);
+        $this->btc->getConfig();
+    }
+
+
+
+    /**
+     * Check call returns correct api class
+     */
+    public function testGetBlockchainApi()
+    {
+        $api = $this->btc->getBlockchainApi();
+        $this->assertInstanceOf('Del\Bitcoin\Api\Blockchain',$api);
+    }
+
+
+
+    /**
+     * Check call returns correct api class
+     */
+    public function testGetControlApi()
+    {
+        $api = $this->btc->getControlApi();
+        $this->assertInstanceOf('Del\Bitcoin\Api\Control',$api);
+    }
+
+
+
+    /**
+     * Check call returns correct api class
+     */
+    public function testGeneratingApi()
+    {
+        $api = $this->btc->getGeneratingApi();
+        $this->assertInstanceOf('Del\Bitcoin\Api\Generate',$api);
+    }
+
+
+
+    /**
+     * Check call returns correct api class
+     */
+    public function testGetMiningApi()
+    {
+        $api = $this->btc->getMiningApi();
+        $this->assertInstanceOf('Del\Bitcoin\Api\Mining',$api);
+    }
+
+
+
+    /**
+     * Check call returns correct api class
+     */
+    public function testGetNetworkApi()
+    {
+        $api = $this->btc->getNetworkApi();
+        $this->assertInstanceOf('Del\Bitcoin\Api\Network',$api);
+    }
+
+
+
+    /**
+     * Check call returns correct api class
+     */
+    public function testGetRawTransactionApi()
+    {
+        $api = $this->btc->getRawTransactionApi();
+        $this->assertInstanceOf('Del\Bitcoin\Api\RawTransaction',$api);
+    }
+
+
+
+    /**
+     * Check call returns correct api class
+     */
+    public function testGetUtilityApi()
+    {
+        $api = $this->btc->getUtilityApi();
+        $this->assertInstanceOf('Del\Bitcoin\Api\Utility',$api);
+    }
+
+
+
+    /**
+     * Check call returns correct api class
+     */
+    public function testGetWalletApi()
+    {
+        $api = $this->btc->getWalletApi();
+        $this->assertInstanceOf('Del\Bitcoin\Api\Wallet',$api);
     }
 
 

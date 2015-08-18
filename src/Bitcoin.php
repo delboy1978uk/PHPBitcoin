@@ -44,7 +44,7 @@ class Bitcoin
         {
             throw new Exception('No configuration');
         }
-        if($this->config['username'] && $this->config['password'])
+        if(isset($this->config['username']) && isset($this->config['password']))
         {
             return $this->config;
         }
@@ -67,8 +67,8 @@ class Bitcoin
      */
     public function getBlockchainApi()
     {
-        if(!$this->api['blockchain']){
-            $this->api['blockchain'] = new Blockchain($this->config);
+        if(!isset($this->api['blockchain'])){
+            $this->api['blockchain'] = new Blockchain($this->getConfig());
         }
         return $this->api['blockchain'];
     }
@@ -78,8 +78,8 @@ class Bitcoin
      */
     public function getControlApi()
     {
-        if(!$this->api['control']){
-            $this->api['control'] = new Control($this->config);
+        if(!isset($this->api['control'])){
+            $this->api['control'] = new Control($this->getConfig());
         }
         return $this->api['control'];
     }
@@ -89,8 +89,8 @@ class Bitcoin
      */
     public function getGeneratingApi()
     {
-        if(!$this->api['generate']){
-            $this->api['generate'] = new Generate($this->config);
+        if(!isset($this->api['generate'])){
+            $this->api['generate'] = new Generate($this->getConfig());
         }
         return $this->api['generate'];
     }
@@ -100,8 +100,8 @@ class Bitcoin
      */
     public function getMiningApi()
     {
-        if(!$this->api['mining']){
-            $this->api['mining'] = new Mining($this->config);
+        if(!isset($this->api['mining'])){
+            $this->api['mining'] = new Mining($this->getConfig());
         }
         return $this->api['mining'];
     }
@@ -111,8 +111,8 @@ class Bitcoin
      */
     public function getNetworkApi()
     {
-        if(!$this->api['network']){
-            $this->api['network'] = new Network($this->config);
+        if(!isset($this->api['network'])){
+            $this->api['network'] = new Network($this->getConfig());
         }
         return $this->api['network'];
     }
@@ -122,8 +122,8 @@ class Bitcoin
      */
     public function getRawTransactionApi()
     {
-        if(!$this->api['raw_transaction']){
-            $this->api['raw_transaction'] = new RawTransaction($this->config);
+        if(!isset($this->api['raw_transaction'])){
+            $this->api['raw_transaction'] = new RawTransaction($this->getConfig());
         }
         return $this->api['raw_transaction'];
     }
@@ -133,8 +133,8 @@ class Bitcoin
      */
     public function getUtilityApi()
     {
-        if(!$this->api['utility']){
-            $this->api['utility'] = new Utility($this->config);
+        if(!isset($this->api['utility'])){
+            $this->api['utility'] = new Utility($this->getConfig());
         }
         return $this->api['utility'];
     }
@@ -144,8 +144,8 @@ class Bitcoin
      */
     public function getWalletApi()
     {
-        if(!$this->api['wallet']){
-            $this->api['wallet'] = new Wallet($this->config);
+        if(!isset($this->api['wallet'])){
+            $this->api['wallet'] = new Wallet($this->getConfig());
         }
         return $this->api['wallet'];
     }
