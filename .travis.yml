@@ -24,7 +24,7 @@ before_script:
   - sleep 5
   - java -jar selenium-server-standalone-2.42.2.jar -port 4444 &
   - sudo apt-get install python-software-properties
-  - add-apt-repository ppa:bitcoin/bitcoin
+  - sudo add-apt-repository ppa:bitcoin/bitcoin
   - sudo apt-get update
   - sudo apt-get install libboost-all-dev libdb4.8-dev libdb4.8++-dev bitcoind
   -  cd ~
