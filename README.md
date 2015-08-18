@@ -10,7 +10,7 @@ still in development
 puPHPet files for Vagrant included. Just vagrant up, vagrant ssh, then install Bitcoin. Unfortunately the ability to add custom repositories is not in puPHPet (yet. see https://github.com/puphpet/puphpet/issues/142)
 ```
 sudo apt-get install python-software-properties
-sudo add-apt-repository ppa:bitcoin/bitcoin
+sudo add-apt-repository --yes ppa:bitcoin/bitcoin
 sudo apt-get update
 sudo apt-get install libboost-all-dev libdb4.8-dev libdb4.8++-dev bitcoind
 cd ~
