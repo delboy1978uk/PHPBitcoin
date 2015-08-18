@@ -18,6 +18,11 @@ temp/
 # Legacy ZF1
 demos/
 extras/documentation
+
+# Test output
+tests/_output
+
+# Hidden system/ide files
 .DS_Store
 .idea
 .vagrant

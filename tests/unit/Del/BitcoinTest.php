@@ -65,6 +65,30 @@ class BitcoinTest extends \Codeception\TestCase\Test
         $this->assertTrue(is_array($this->btc->getConfig()));
     }
 
+
+
+    /**
+     * Check config setting works
+     */
+    public function testSetConfigThroughConstructor()
+    {
+        $this->btc = new Bitcoin($this->config);
+        $this->assertTrue(is_array($this->btc->getConfig()));
+    }
+
+
+
+    /**
+     * Check config setting works
+     */
+    public function testThrowsExceptionWhenNoConfigFile()
+    {
+        $this->setExpectedException('Exception');
+        $this->btc->getConfig();
+    }
+
+
+
     public function testGetInfo()
     {
         $this->btc->setConfig($this->config);
@@ -92,5 +116,7 @@ class BitcoinTest extends \Codeception\TestCase\Test
         $method->setAccessible(true);
         return $method->invokeArgs($object, $parameters);
     }
+
+
 
 }
