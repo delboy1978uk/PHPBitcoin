@@ -60,3 +60,7 @@ You should use the testnet option if developing, tests connect on port 18332! Fi
 ```
 bitcoind
 ```
+Shut down bitcoind using the bitcoin-cli command
+```
+bitcoin-cli stop
+```
