@@ -32,11 +32,11 @@ class AbstractApi
      */
     public function setConfig(array $config)
     {
-        $protocol = isset($config['protocol'])? $config['protocol'] : 'http';
-        $host = isset($config['host'])? $config['host'] : '127.0.0.1';
-        $port = isset($config['port'])? $config['port'] : '8332';
+        $protocol = isset($config['protocol']) ? $config['protocol'] : 'http';
+        $host = isset($config['host']) ? $config['host'] : '127.0.0.1';
+        $port = isset($config['port']) ? $config['port'] : '8332';
         $this->config = $config;
-        $this->host = $protocol.'://'.$host.':'.$port;
+        $this->host = $protocol . '://' . $host . ':' . $port;
         $this->client = new Client(['base_uri' => $this->host]);
         return $this;
     }
