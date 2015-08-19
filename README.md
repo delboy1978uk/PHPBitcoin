@@ -23,6 +23,30 @@ $btc = new Bitcoin($config);
 
 //example
 $info = $btc->getControlApi()->getInfo();
+
+/* sample output
+{
+    "result":{
+        "version":119900,
+        "protocolversion":70002,
+        "walletversion":60000,
+        "balance":0.00000000,
+        "blocks":531329,
+        "timeoffset":0,
+        "connections":8,
+        "proxy":"",
+        "difficulty":1,
+        "testnet":false,
+        "keypoololdest":1439840037,
+        "keypoolsize":101,
+        "paytxfee":0.00000000,
+        "relayfee":0.00001000,
+        "errors":""
+    },
+    "error":null,
+    "id":"phpbitcoin"
+}
+*/
 ```
 ###API's
 The Bitcoin object has access to each of the different API's available
