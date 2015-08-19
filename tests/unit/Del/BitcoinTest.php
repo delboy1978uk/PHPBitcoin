@@ -24,7 +24,6 @@ class BitcoinTest extends \Codeception\TestCase\Test
 
     protected function _before()
     {
-
         $this->config = [
             'username' => 'phpbitcoin',
             'password' => 'COMPLETELYrandomPASSWORD',
