@@ -85,10 +85,9 @@ class BlockchainTest extends \Codeception\TestCase\Test
 
     public function testGetDifficulty()
     {
-        $info = json_decode($this->api->getChainTips(),true);
+        $info = json_decode($this->api->getDifficulty(),true);
         $this->assertArrayHasKey('result',$info);
-        $this->assertArrayHasKey('height',$info['result'][0]);
-        $this->assertTrue(is_numeric($info['result'][0]['height']));
+        $this->assertTrue(is_numeric($info['result']));
     }
 
 
