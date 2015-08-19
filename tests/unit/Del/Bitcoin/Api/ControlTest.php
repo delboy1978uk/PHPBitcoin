@@ -4,7 +4,6 @@ namespace Del\Bitcoin\Api;
 
 use ReflectionClass;
 use AspectMock\Test;
-use GuzzleHttp\Psr7\Response;
 
 class ControlTest extends \Codeception\TestCase\Test
 {
