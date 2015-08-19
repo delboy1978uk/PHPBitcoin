@@ -56,6 +56,7 @@ class AbstractApi
      */
     protected function send($uri, $params = [])
     {
+        /** @var \GuzzleHttp\Psr7\Response $response  */
         $response = $this->getClient()->post('/',[
             'auth' => [
                 $this->config['username'],

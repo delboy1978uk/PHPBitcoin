@@ -42,6 +42,9 @@ class ControlTest extends \Codeception\TestCase\Test
     {
         // unset the api class after each test
         unset($this->api);
+
+        // Clear any mocks etc
+        Test::clean();
     }
 
 
