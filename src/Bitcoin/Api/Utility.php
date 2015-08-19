@@ -20,7 +20,7 @@ class Utility extends AbstractApi
      */
     public function createMultiSig($num)
     {
-        return $this->send('createmultisig');
+        return $this->send('createmultisig',[$num]);
     }
 
     /**

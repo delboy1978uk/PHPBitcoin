@@ -53,7 +53,7 @@ The Bitcoin object has access to each of the different API's available
 ```php
 $btc->getBlockchainApi();     //completed
 $btc->getControlApi();        //completed
-$btc->getGeneratingApi();     //todo
+$btc->getGeneratingApi();     //completed
 $btc->getMiningApi();         //todo
 $btc->getNetworkApi();        //completed
 $btc->getRawTransactionApi(); //todo
