@@ -57,7 +57,7 @@ $btc->getGeneratingApi();     //todo
 $btc->getMiningApi();         //todo
 $btc->getNetworkApi();        //completed
 $btc->getRawTransactionApi(); //todo
-$btc->getUtilityApi();        //todo
+$btc->getUtilityApi();        //completed
 $btc->getWalletApi();         //todo
 ```
 Each API has docblock comments from the actual API, so you should get nice code completion.

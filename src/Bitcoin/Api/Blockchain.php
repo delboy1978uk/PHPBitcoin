@@ -26,8 +26,10 @@ class Blockchain extends AbstractApi
      * the local block database either as a JSON object
      * or as a serialized block.
      *
-     * @param string $header_hash
-     * @param bool $json
+     * @param string $header_hash The hash of the header of the block to get,
+     * encoded as hex in RPC byte order
+     * @param bool $json Set to false to get the block in serialized block format;
+     * set to true (the default) to get the decoded block as a JSON object
      * @return mixed
      */
     public function getBlock($header_hash,$json = true)
@@ -61,7 +63,8 @@ class Blockchain extends AbstractApi
      * The getblockhash RPC returns the header hash of a block
      * at the given height in the local best block chain.
      *
-     * @param $height
+     * @param int $height The height of the block whose header hash
+     * should be returned. The height of the hardcoded genesis block is 0
      * @return mixed
      */
     public function getBlockHash($height)
@@ -106,12 +109,14 @@ class Blockchain extends AbstractApi
      * in the memory pool as a JSON array, or detailed information about
      * each transaction in the memory pool as a JSON object.
      *
-     * @param bool $verbose
+     * @param bool $format Set to true to get verbose output describing
+     * each transaction in the memory pool; set to false (the default) to
+     * only get an array of TXIDs for transactions in the memory pool
      * @return mixed
      */
-    public function getRawMemPool($verbose = false)
+    public function getRawMemPool($format = false)
     {
-        return $this->send('getrawmempool',[$verbose]);
+        return $this->send('getrawmempool',[$format]);
     }
 
     /**
@@ -119,7 +124,8 @@ class Blockchain extends AbstractApi
      * Only unspent transaction outputs (UTXOs) are guaranteed to be
      * available.
      *
-     * @param string $txid a hex id
+     * @param string $txid The TXID of the transaction containing the
+     * output to get, encoded as hex in RPC byte order
      * @return mixed
      */
     public function getTxOut($txid)
@@ -144,8 +150,19 @@ class Blockchain extends AbstractApi
      * The verifychain RPC verifies each entry in the local
      * block chain database.
      *
-     * @param $check_level
-     * @param $num_blocks
+     * @param int $check_level How thoroughly to check each block,
+     * from 0 to 4. Default is the level set with the -checklevel command
+     * line argument; if that isn’t set, the default is 3. Each higher
+     * level includes the tests from the lower levels
+     * Levels are:
+     * 0. Read from disk to ensure the files are accessible
+     * 1. Ensure each block is valid
+     * 2. Make sure undo files can be read from disk and are in a valid format
+     * 3. Test each block undo to ensure it results in correct state
+     * 4. After undoing blocks, reconnect them to ensure they reconnect correctly
+     * @param int $num_blocks The number of blocks to verify. Set to 0 to check
+     * all blocks. Defaults to the value of the -checkblocks command-line
+     * argument; if that isn’t set, the default is 288
      * @return mixed
      */
     public function verifyChain($check_level, $num_blocks)

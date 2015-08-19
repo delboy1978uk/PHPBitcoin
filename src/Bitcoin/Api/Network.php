@@ -15,7 +15,10 @@ class Network extends AbstractApi
      * The addnode RPC attempts to add or remove a node from
      * the addnode list, or to try a connection to a node once.
      *
-     * @param $host
+     * @param string $host The node to add as a string in the form of
+     * <IP address>:<port>. The IP address may be a hostname
+     * resolvable through DNS, an IPv4 address, an IPv4-as-IPv6 address,
+     * or an IPv6 address
      * @return mixed
      */
     public function addNode($host)
