@@ -64,3 +64,6 @@ Shut down bitcoind using the bitcoin-cli command
 ```
 bitcoin-cli stop
 ```
+##Donate
+If you like PHPBitcoin, spare half a shekel for and old ex leper.
+1De1boyXJzdk4TYmHkR3st6dJmHuEaneHB
