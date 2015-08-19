@@ -3,7 +3,7 @@
 A PHP service for connecting to bitcoind. Also compatible with Zend Framework 2
 ##Usage
 ```php
-use Del\Bitcoin();
+use Del\Bitcoin;
 
 $config = [
     'username' => 'YOURUSERNAME', // required
@@ -11,7 +11,7 @@ $config = [
     'host' => '127.0.0.1',    // default
     'port' => '8332',         // default
     'protocol' => 'http',     // default
-    'ssl_certificate' => '',  // default
+    'ssl_certificate' => '',  // default @todo
 ];
 
 $btc = new Bitcoin($config);
