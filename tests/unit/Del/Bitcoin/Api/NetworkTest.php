@@ -34,6 +34,8 @@ class NetworkTest extends \Codeception\TestCase\Test
 
         // create a fresh API class before each test
         $this->api = new Network($this->config);
+
+
     }
 
     protected function _after()
@@ -92,17 +94,26 @@ class NetworkTest extends \Codeception\TestCase\Test
 
     public function testAddNode()
     {
-        //add a non existant ip address
-        $info = json_decode($this->api->addNode('192.168.144.144','add'),true);
+        $info = json_decode($this->api->addNode('blockexplorer.com:18332','add'),true);
         $this->assertArrayHasKey('result',$info);
         $this->assertNull($info['result']);
         $this->assertNull($info['error']);
 
-        // remove the node
-        $info = json_decode($this->api->addNode('192.168.144.144','remove'),true);
+        $info = json_decode($this->api->addNode('blockexplorer.com:18332','remove'),true);
         $this->assertArrayHasKey('result',$info);
         $this->assertNull($info['result']);
         $this->assertNull($info['error']);
+    }
+
+
+
+    public function testGetAddedNodeInfo()
+    {
+        $this->api->addNode('blockexplorer.com:18332','add');
+        $info = json_decode($this->api->getAddedNodeInfo(true,'blockexplorer.com:18332'),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertArrayHasKey('addednode',$info['result'][0]);
+        $this->api->addNode('blockexplorer.com:18332','remove');
     }
 
 
