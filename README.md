@@ -56,7 +56,7 @@ $btc->getControlApi();        //completed
 $btc->getGeneratingApi();     //completed
 $btc->getMiningApi();         //completed
 $btc->getNetworkApi();        //completed
-$btc->getRawTransactionApi(); //todo
+$btc->getRawTransactionApi(); //completed
 $btc->getUtilityApi();        //completed
 $btc->getWalletApi();         //todo
 ```
