@@ -19,11 +19,18 @@ class Network extends AbstractApi
      * <IP address>:<port>. The IP address may be a hostname
      * resolvable through DNS, an IPv4 address, an IPv4-as-IPv6 address,
      * or an IPv6 address
+     * @param string $command What to do with the IP address above. Options are:
+     * add to add a node to the addnode list. This will not connect immediately
+     *      if the outgoing connection slots are full
+     * remove to remove a node from the list. If currently connected, this will
+     *      disconnect immediately
+     * onetry to immediately attempt connection to the node even if the outgoing
+     *      connection slots are full; this will only attempt the connection once
      * @return mixed
      */
-    public function addNode($host)
+    public function addNode($host,$command)
     {
-        return $this->send('addnode',[$host]);
+        return $this->send('addnode',[$host,$command]);
     }
 
     /**

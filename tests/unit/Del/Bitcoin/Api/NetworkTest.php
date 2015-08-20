@@ -90,4 +90,21 @@ class NetworkTest extends \Codeception\TestCase\Test
 
 
 
+    public function testAddNode()
+    {
+        //add a non existant ip address
+        $info = json_decode($this->api->addNode('192.168.144.144','add'),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertNull($info['result']);
+        $this->assertNull($info['error']);
+
+        // remove the node
+        $info = json_decode($this->api->addNode('192.168.144.144','remove'),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertNull($info['result']);
+        $this->assertNull($info['error']);
+    }
+
+
+
 }

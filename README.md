@@ -51,14 +51,14 @@ $info = $btc->getControlApi()->getInfo();
 ###API's
 The Bitcoin object has access to each of the different API's available
 ```php
-$btc->getBlockchainApi();     //completed
-$btc->getControlApi();        //completed
-$btc->getGeneratingApi();     //completed
-$btc->getMiningApi();         //completed
-$btc->getNetworkApi();        //completed
-$btc->getRawTransactionApi(); //completed
-$btc->getUtilityApi();        //completed
-$btc->getWalletApi();         //todo
+$btc->getBlockchainApi();
+$btc->getControlApi();
+$btc->getGeneratingApi();
+$btc->getMiningApi();
+$btc->getNetworkApi();
+$btc->getRawTransactionApi();
+$btc->getUtilityApi();
+$btc->getWalletApi();
 ```
 Each API has docblock comments from the actual API, so you should get nice code completion.
 However the actual Bitcoin API docs can be found at https://bitcoin.org/en/developer-reference#rpc-quick-reference
