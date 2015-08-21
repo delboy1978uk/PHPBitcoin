@@ -19,11 +19,13 @@ class Mining extends AbstractApi
      * BIP22 https://github.com/bitcoin/bips/blob/master/bip-0022.mediawiki
      * BIP23 https://github.com/bitcoin/bips/blob/master/bip-0023.mediawiki
      *
+     * @param null|array $params see wiki for details
      * @return mixed
      */
-    public function getBlockTemplate()
+    public function getBlockTemplate(array $params = null)
     {
-        return $this->send('getblocktemplate');
+        $params ?: ['capabilities' => ["coinbasetxn", "workid", "coinbase/append"]];
+        return $this->send('getblocktemplate',$params);
     }
 
     /**
