@@ -216,25 +216,53 @@ class Wallet extends AbstractApi
      */
     public function getTransaction($txid,$inc_watch_only = false)
     {
-        return $this->send('',[$txid,$inc_watch_only]);
+        return $this->send('gettransaction',[$txid,$inc_watch_only]);
+    }
+
+    /**
+     * The getunconfirmedbalance RPC returns the wallet’s total unconfirmed balance.
+     *
+     * @return mixed
+     */
+    public function getUnconfirmedBalance()
+    {
+        return $this->send('getunconfirmedbalance');
+    }
+
+    /**
+     * The getwalletinfo RPC provides information about the wallet.
+     *
+     * @return mixed
+     */
+    public function getWalletInfo()
+    {
+        return $this->send('getwalletinfo');
+    }
+
+    /**
+     * The importaddress RPC adds an address or pubkey script to the wallet without the
+     * associated private key, allowing you to watch for transactions affecting that address
+     * or pubkey script without being able to spend any of its outputs.
+     *
+     * @param string $address Either a P2PKH or P2SH address encoded in base58check, or a
+     * pubkey script encoded as hex
+     * @param string $account An account name into which the address should be placed. Default
+     * is the default account, an empty string(“”)
+     * @param bool $rescan Set to true (the default) to rescan the entire local block database
+     * for transactions affecting any address or pubkey script in the wallet (including
+     * transaction affecting the newly-added address or pubkey script). Set to false to not
+     * rescan the block database (rescanning can be performed at any time by restarting Bitcoin
+     * Core with the -rescan command-line argument). Rescanning may take several minutes. Notes:
+     * if the address or pubkey script is already in the wallet, the block database will not be
+     * rescanned even if this parameter is set
+     * @return mixed
+     */
+    public function importAddress($address,$account = '',$rescan = true)
+    {
+        return $this->send('importaddress',[$address,$account,$rescan]);
     }
 
     
-    public function getUnconfirmedBalance()
-    {
-        return $this->send('',[]);
-    }
-
-    public function getWalletInfo()
-    {
-        return $this->send('',[]);
-    }
-
-    public function importAddress()
-    {
-        return $this->send('',[]);
-    }
-
     public function importPrivKey()
     {
         return $this->send('',[]);
