@@ -635,9 +635,22 @@ class Wallet extends AbstractApi
         return $this->send('walletlock');
     }
 
-    public function walletPassphrase()
+    /**
+     * The walletpassphrase RPC stores the wallet decryption key in memory for the
+     * indicated number of seconds. Issuing the walletpassphrase command while the wallet
+     * is already unlocked will set a new unlock time that overrides the old one.
+     *
+     * Warning: if using this RPC on the command line, remember that your shell probably
+     * saves your command lines (including the value of the passphrase parameter).
+     *
+     * @param string $passphrase The passphrase that unlocks the wallet
+     * @param int $seconds The number of seconds after which the decryption key will be
+     * automatically deleted from memory
+     * @return mixed
+     */
+    public function walletPassphrase($passphrase,$seconds)
     {
-        return $this->send('',[]);
+        return $this->send('walletpassphrase',[$passphrase,$seconds]);
     }
 
     public function walletPassphraseChange()
