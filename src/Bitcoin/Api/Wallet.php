@@ -597,10 +597,18 @@ class Wallet extends AbstractApi
         return $this->send('setaccount',[$address,$account]);
     }
 
-    
-    public function setTxFee()
+    /**
+     * The settxfee RPC sets the transaction fee per kilobyte paid by transactions
+     * created by this wallet.
+     *
+     * @param float $fee The transaction fee to pay, in bitcoins, for each kilobyte
+     * of transaction data. Be careful setting the fee too low—your transactions
+     * may not be relayed or included in blocks
+     * @return mixed
+     */
+    public function setTxFee($fee)
     {
-        return $this->send('',[]);
+        return $this->send('settxfee',[$fee]);
     }
 
     public function signMessage()
