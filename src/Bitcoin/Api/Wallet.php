@@ -10,198 +10,338 @@ namespace Del\Bitcoin\Api;
 
 class Wallet extends AbstractApi
 {
-    public function addMultiSigAddress()
+    /**
+     * The addmultisigaddress RPC adds a P2SH multisig address to the wallet.
+     *
+     * @param int $number The minimum (m) number of signatures required to spend
+     * this m-of-n multisig script
+     * @param string|array $addresses either
+     * Keys Or Addresses	array	Required(exactly 1)
+     *     An array of strings with each string being a public key or address
+     * Key Or Address	string	Required(1 or more)
+     *     A public key against which signatures will be checked. Alternatively,
+     *     this may be a P2PKH address belonging to the wallet—the corresponding
+     *     public key will be substituted. There must be at least as many keys as
+     *     specified by the Required parameter, and there may be more keys
+     * @return mixed
+     */
+    public function addMultiSigAddress($number,$addresses)
     {
-
+        return $this->send('addmultisigaddress',[$number,$addresses]);
     }
 
-    public function backupWallet()
+    /**
+     * The backupwallet RPC safely copies wallet.dat to the specified file, which
+     * can be a directory or a path with filename.
+     *
+     * @param string $destination A filename or directory name. If a filename, it will
+     * be created or overwritten. If a directory name, the file wallet.dat will be
+     * created or overwritten within that directory
+     * @return mixed
+     */
+    public function backupWallet($destination)
     {
-
+        return $this->send('backupwallet',[$destination]);
     }
 
-    public function dumpPrivKey()
+    /**
+     * The dumpprivkey RPC returns the wallet-import-format (WIP) private key
+     * corresponding to an address. (But does not remove it from the wallet.)
+     *
+     * @param string $p2pkh_address The P2PKH address corresponding to the private key
+     * you want returned. Must be the address corresponding to a private key in this wallet
+     * @return mixed
+     */
+    public function dumpPrivKey($p2pkh_address)
     {
-
+        return $this->send('dumpprivkey',[$p2pkh_address]);
     }
 
-    public function dumpWallet()
+    /**
+     * The dumpwallet RPC creates or overwrites a file with all wallet keys in a
+     * human-readable format.
+     *
+     * @param string $filename The file in which the wallet dump will be placed. May be
+     * prefaced by an absolute file path. An existing file with that name will be
+     * overwritten
+     * @return mixed
+     */
+    public function dumpWallet($filename)
     {
-
+        return $this->send('dumpwallet',[$filename]);
     }
 
-    public function encryptWallet()
+    /**
+     * The encryptwallet RPC encrypts the wallet with a passphrase. This is only to enable
+     * encryption for the first time. After encryption is enabled, you will need to enter
+     * the passphrase to use private keys.
+     *
+     * Warning: if using this RPC on the command line, remember that your shell probably
+     * saves your command lines (including the value of the passphrase parameter). In
+     * addition, there is no RPC to completely disable encryption. If you want to return
+     * to an unencrypted wallet, you must create a new wallet and restore your data from
+     * a backup made with the dumpwallet RPC.
+     *
+     * @param string $passphrase
+     * @return mixed
+     */
+    public function encryptWallet($passphrase)
     {
-
+        return $this->send('encryptwallet',[$passphrase]);
     }
 
-    public function getAccountAddress()
+    /**
+     * The getaccountaddress RPC returns the current Bitcoin address for receiving payments
+     * to this account. If the account doesn’t exist, it creates both the account and a new
+     * address for receiving payment. Once a payment has been received to an address,
+     * future calls to this RPC for the same account will return a different address.
+     *
+     * @param string $account The name of an account. Use an empty string (“”) for the
+     * default account. If the account doesn’t exist, it will be created
+     * @return mixed
+     */
+    public function getAccountAddress($account)
     {
-
+        return $this->send('getaccountaddress',[$account]);
     }
 
-    public function getAccount()
+    /**
+     * The getaccount RPC returns the name of the account associated with the given address.
+     *
+     * @param string $address A P2PKH or P2SH Bitcoin address belonging either to a specific
+     * account or the default account (“”)
+     * @return mixed
+     */
+    public function getAccount($address)
     {
-
+        return $this->send('getaccount',[$address]);
     }
 
-    public function getAddressesByAccount()
+    /**
+     * The getaddressesbyaccount RPC returns a list of every address assigned to a
+     * particular account.
+     *
+     * @param string $account The name of the account containing the addresses to
+     * get. To get addresses from the default account, pass an empty string (“”)
+     * @return mixed
+     */
+    public function getAddressesByAccount($account)
     {
-
+        return $this->send('getaddressesbyaccount',[$account]);
     }
 
-    public function getBalance()
+    /**
+     * The getbalance RPC gets the balance in decimal bitcoins across all accounts
+     * or for a particular account.
+     *
+     * @param string $account The name of an account to get the balance for. An
+     * empty string (“”) is the default account. The string * will get the balance
+     * for all accounts (this is the default behavior)
+     * @param int $confirmations The minimum number of confirmations an
+     * externally-generated transaction must have before it is counted towards the
+     * balance. Transactions generated by this node are counted immediately. Typically,
+     * externally-generated transactions are payments to this wallet and transactions
+     * generated by this node are payments to other wallets. Use 0 to count unconfirmed
+     * transactions. Default is 1
+     * @param bool $inc_watch_only
+     * @return mixed
+     */
+    public function getBalance($account = '*',$confirmations = 1,$inc_watch_only = false)
     {
-
+        return $this->send('getbalance',[$account,$confirmations,$inc_watch_only]);
     }
 
-    public function getNewAddress()
+    /**
+     * The getnewaddress RPC returns a new Bitcoin address for receiving payments. If an
+     * account is specified, payments received with the address will be credited to that
+     * account.
+     *
+     * @param string $account The name of the account to put the address in. The default
+     * is the default account, an empty string (“”)
+     * @return mixed
+     */
+    public function getNewAddress($account)
     {
-
+        return $this->send('getnewaddress',[$account]);
     }
 
+    /**
+     * The getrawchangeaddress RPC returns a new Bitcoin address for receiving change.
+     * This is for use with raw transactions, not normal use.
+     *
+     * @return mixed
+     */
     public function getRawChangeAddress()
     {
-
+        return $this->send('getrawchangeaddress');
     }
 
-    public function getReceivedByAccount()
+    /**
+     * The getreceivedbyaccount RPC returns the total amount received by addresses in a
+     * particular account from transactions with the specified number of confirmations.
+     * It does not count coinbase transactions.
+     *
+     * @param string $account The name of the account containing the addresses to get.
+     * For the default account, use an empty string (“”)
+     * @return mixed
+     */
+    public function getReceivedByAccount($account)
     {
-
+        return $this->send('getreceivedbyaccount',[$account]);
     }
 
-    public function getReceivedByAddress()
+    /**
+     * The getreceivedbyaddress RPC returns the total amount received by the specified
+     * address in transactions with the specified number of confirmations. It does not
+     * count coinbase transactions.
+     *
+     * @param string $address The address whose transactions should be tallied
+     * @return mixed
+     */
+    public function getReceivedByAddress($address)
     {
-
+        return $this->send('getreceivedbyaddress',[$address]);
     }
 
-    public function getTransaction()
+    /**
+     * The gettransaction RPC gets detailed information about an in-wallet transaction.
+     *
+     * @param string $txid The TXID of the transaction to get details about. The TXID must be
+     * encoded as hex in RPC byte order
+     * @param bool $inc_watch_only If set to true, include watch-only addresses in details
+     * and calculations as if they were regular addresses belonging to the wallet. If set
+     * to false (the default), treat watch-only addresses as if they didn’t belong to this
+     * wallet
+     * @return mixed
+     */
+    public function getTransaction($txid,$inc_watch_only = false)
     {
-
+        return $this->send('',[$txid,$inc_watch_only]);
     }
 
+    
     public function getUnconfirmedBalance()
     {
-
+        return $this->send('',[]);
     }
 
     public function getWalletInfo()
     {
-
+        return $this->send('',[]);
     }
 
     public function importAddress()
     {
-
+        return $this->send('',[]);
     }
 
     public function importPrivKey()
     {
-
+        return $this->send('',[]);
     }
 
     public function importWallet()
     {
-
+        return $this->send('',[]);
     }
 
     public function keyPoolRefill()
     {
-
+        return $this->send('',[]);
     }
 
     public function listAccounts()
     {
-
+        return $this->send('',[]);
     }
 
     public function listAddressGroupings()
     {
-
+        return $this->send('',[]);
     }
 
     public function listLockUnspent()
     {
-
+        return $this->send('',[]);
     }
 
     public function listReceivedByAccount()
     {
-
+        return $this->send('',[]);
     }
 
     public function listReceivedByAddress()
     {
-
+        return $this->send('',[]);
     }
 
     public function listSinceBlock()
     {
-
+        return $this->send('',[]);
     }
 
     public function listTransactions()
     {
-
+        return $this->send('',[]);
     }
 
     public function listUnspent()
     {
-
+        return $this->send('',[]);
     }
 
     public function lockUnspent()
     {
-
+        return $this->send('',[]);
     }
 
     public function move()
     {
-
+        return $this->send('',[]);
     }
 
     public function sendFrom()
     {
-
+        return $this->send('',[]);
     }
 
     public function sendMany()
     {
-
+        return $this->send('',[]);
     }
 
     public function sendToAddress()
     {
-
+        return $this->send('',[]);
     }
 
     public function setAccount()
     {
-
+        return $this->send('',[]);
     }
 
     public function setTxFee()
     {
-
+        return $this->send('',[]);
     }
 
     public function signMessage()
     {
-
+        return $this->send('',[]);
     }
 
     public function walletLock()
     {
-
+        return $this->send('',[]);
     }
 
     public function walletPassphrase()
     {
-
+        return $this->send('',[]);
     }
 
     public function walletPassphraseChange()
     {
-
+        return $this->send('',[]);
     }
 }
