@@ -611,11 +611,19 @@ class Wallet extends AbstractApi
         return $this->send('settxfee',[$fee]);
     }
 
-    public function signMessage()
+    /**
+     * The signmessage RPC signs a message with the private key of an address.
+     *
+     * @param string $address A P2PKH address whose private key belongs to this wallet
+     * @param string $message The message to sign
+     * @return mixed
+     */
+    public function signMessage($address,$message)
     {
-        return $this->send('',[]);
+        return $this->send('signmessage',[$address,$message]);
     }
 
+    
     public function walletLock()
     {
         return $this->send('',[]);
