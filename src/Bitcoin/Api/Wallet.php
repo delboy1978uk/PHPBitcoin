@@ -566,9 +566,21 @@ class Wallet extends AbstractApi
         return $this->send('sendmany',[$from,$ouputs,$confirmations,$comment]);
     }
 
-    public function sendToAddress()
+    /**
+     * The sendtoaddress RPC spends an amount to a given address.
+     *
+     * @param string $to A P2PKH or P2SH address to which the bitcoins should be sent
+     * @param float $amount The amount to spent in bitcoins
+     * @param string $comment A locally-stored (not broadcast) comment assigned to
+     * this transaction. Default is no comment
+     * @param string $comment_to A locally-stored (not broadcast) comment assigned to
+     * this transaction. Meant to be used for describing who the payment was sent to.
+     * Default is no comment
+     * @return mixed
+     */
+    public function sendToAddress($to,$amount,$comment = '', $comment_to = '')
     {
-        return $this->send('',[]);
+        return $this->send('sendtoaddress',[$to,$amount,$comment,$comment_to]);
     }
 
     public function setAccount()
