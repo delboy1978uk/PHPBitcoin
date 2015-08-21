@@ -126,5 +126,15 @@ class WalletTest extends \Codeception\TestCase\Test
 
 
 
+    public function testGetAddressesByAccount()
+    {
+        $info = json_decode($this->api->getAddressesByAccount(),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertTrue(is_string($info['result'][0]));
+    }
+
+
+
+
 
 }

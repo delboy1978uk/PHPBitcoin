@@ -125,7 +125,7 @@ class Wallet extends AbstractApi
      * get. To get addresses from the default account, pass an empty string (“”)
      * @return mixed
      */
-    public function getAddressesByAccount($account)
+    public function getAddressesByAccount($account = '')
     {
         return $this->send('getaddressesbyaccount',[$account]);
     }
