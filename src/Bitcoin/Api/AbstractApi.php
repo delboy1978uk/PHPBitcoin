@@ -75,4 +75,9 @@ class AbstractApi
         ]);
         return $response->getBody();
     }
+
+    public function sendRaw($method,$params)
+    {
+        $this->send($method,$params);
+    }
 }

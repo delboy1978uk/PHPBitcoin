@@ -100,7 +100,7 @@ class Wallet extends AbstractApi
      * default account. If the account doesn’t exist, it will be created
      * @return mixed
      */
-    public function getAccountAddress($account)
+    public function getAccountAddress($account = '')
     {
         return $this->send('getaccountaddress',[$account]);
     }
@@ -160,7 +160,7 @@ class Wallet extends AbstractApi
      * is the default account, an empty string (“”)
      * @return mixed
      */
-    public function getNewAddress($account)
+    public function getNewAddress($account = '')
     {
         return $this->send('getnewaddress',[$account]);
     }
