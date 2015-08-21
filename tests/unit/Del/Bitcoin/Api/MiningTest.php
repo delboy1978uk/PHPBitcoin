@@ -57,7 +57,6 @@ class MiningTest extends \Codeception\TestCase\Test
     public function testGetBlockTemplate()
     {
         $info = json_decode($this->api->getBlockTemplate(),true);
-        die("getblocktemplate errors on travis - \n".var_dump($info));
         $this->assertArrayHasKey('capabilities',$info['result']);
     }
 

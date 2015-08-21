@@ -71,7 +71,6 @@ class AbstractApi
                 'method' => $uri,
                 'params' => $params,
                 'id' => 'phpbitcoin',
-                "jsonrpc" => "2.0"
             ],
         ]);
         return $response->getBody();
