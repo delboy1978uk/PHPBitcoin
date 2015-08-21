@@ -653,8 +653,19 @@ class Wallet extends AbstractApi
         return $this->send('walletpassphrase',[$passphrase,$seconds]);
     }
 
-    public function walletPassphraseChange()
+    /**
+     * The walletpassphrasechange RPC changes the wallet passphrase from
+     * ‘old passphrase’ to ‘new passphrase’.
+     *
+     * Warning: if using this RPC on the command line, remember that your shell probably
+     * saves your command lines (including the value of the passphrase parameter).
+     *
+     * @param string $current The current wallet passphrase
+     * @param string $new The new passphrase for the wallet
+     * @return mixed
+     */
+    public function walletPassphraseChange($current,$new)
     {
-        return $this->send('',[]);
+        return $this->send('walletpassphrasechange',[$current,$new]);
     }
 }
