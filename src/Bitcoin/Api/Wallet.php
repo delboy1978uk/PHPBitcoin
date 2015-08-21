@@ -419,12 +419,25 @@ class Wallet extends AbstractApi
         return $this->send('listsinceblock',[$header_hash,$target_confirmations,$inc_watch_only]);
     }
 
-    
-    public function listTransactions()
+    /**
+     * The listtransactions RPC returns the most recent transactions that affect the wallet.
+     *
+     * @param string $account The name of an account to get transactinos from. Use an empty string (“”)
+     * to get transactions for the default account. Default is * to get transactions for all accounts
+     * @param int $count The number of the most recent transactions to list. Default is 10
+     * @param int $skip The number of the most recent transactions which should not be returned. Allows
+     * for pagination of results. Default is 0
+     * @param bool $inc_watch_only If set to true, include watch-only addresses in details and
+     * calculations as if they were regular addresses belonging to the wallet. If set to false (the
+     * default), treat watch-only addresses as if they didn’t belong to this wallet
+     * @return mixed
+     */
+    public function listTransactions($account = '*',$count = 10,$skip = 0,$inc_watch_only = false)
     {
-        return $this->send('',[]);
+        return $this->send('listtransactions',[$account,$count,$skip,$inc_watch_only]);
     }
 
+    
     public function listUnspent()
     {
         return $this->send('',[]);
