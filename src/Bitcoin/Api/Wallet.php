@@ -623,10 +623,16 @@ class Wallet extends AbstractApi
         return $this->send('signmessage',[$address,$message]);
     }
 
-    
+    /**
+     * The walletlock RPC removes the wallet encryption key from memory, locking the
+     * wallet. After calling this method, you will need to call walletpassphrase again
+     * before being able to call any methods which require the wallet to be unlocked.
+     *
+     * @return mixed
+     */
     public function walletLock()
     {
-        return $this->send('',[]);
+        return $this->send('walletlock');
     }
 
     public function walletPassphrase()
