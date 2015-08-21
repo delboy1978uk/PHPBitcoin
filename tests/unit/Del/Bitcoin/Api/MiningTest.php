@@ -51,4 +51,13 @@ class MiningTest extends \Codeception\TestCase\Test
         $this->assertArrayHasKey('blocks',$info['result']);
     }
 
+
+
+
+    public function testGetBlockTemplate()
+    {
+        $info = json_decode($this->api->getBlockTemplate(),true);
+        $this->assertArrayHasKey('capabilities',$info['result']);
+    }
+
 }
