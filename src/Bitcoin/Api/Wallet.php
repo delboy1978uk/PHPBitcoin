@@ -395,14 +395,31 @@ class Wallet extends AbstractApi
      */
     public function listReceivedByAddress($confirmations = 1,$inc_empty = false,$inc_watch_only = false)
     {
-        return $this->send('',[$confirmations,$inc_empty,$inc_watch_only]);
+        return $this->send('listreceivedbyaddress',[$confirmations,$inc_empty,$inc_watch_only]);
     }
 
-    public function listSinceBlock()
+    /**
+     * The listsinceblock RPC gets all transactions affecting the wallet which have occurred since a
+     * particular block, plus the header hash of a block at a particular depth.
+     *
+     * @param string $header_hash The hash of a block header encoded as hex in RPC byte order
+     * . All transactions affecting the wallet which are not in that block or any earlier
+     * block will be returned, including unconfirmed transactions. Default is the hash of the
+     * genesis block, so all transactions affecting the wallet are returned by default
+     * @param int $target_confirmations Sets the lastblock field of the results to the header hash
+     * of a block with this many confirmations. This does not affect which transactions are
+     * returned. Default is 1, so the hash of the most recent block on the local best block chain is returned
+     * @param bool $inc_watch_only If set to true, include watch-only addresses in details and
+     * calculations as if they were regular addresses belonging to the wallet. If set to false
+     * (the default), treat watch-only addresses as if they didn’t belong to this wallet
+     * @return mixed
+     */
+    public function listSinceBlock($header_hash = '0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f',$target_confirmations = 1,$inc_watch_only = false)
     {
-        return $this->send('',[]);
+        return $this->send('listsinceblock',[$header_hash,$target_confirmations,$inc_watch_only]);
     }
 
+    
     public function listTransactions()
     {
         return $this->send('',[]);
