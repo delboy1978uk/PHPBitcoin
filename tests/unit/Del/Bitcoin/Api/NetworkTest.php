@@ -115,7 +115,4 @@ class NetworkTest extends \Codeception\TestCase\Test
         $this->assertArrayHasKey('addednode',$info['result'][0]);
         $this->api->addNode('blockexplorer.com:18332','remove');
     }
-
-
-
 }

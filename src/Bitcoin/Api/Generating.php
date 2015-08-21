@@ -46,6 +46,6 @@ class Generating extends AbstractApi
      */
     public function setGenerate($enable,$processors)
     {
-        return $this->send('generate',[$enable,$processors]);
+        return $this->send('setgenerate',[$enable,$processors]);
     }
 }

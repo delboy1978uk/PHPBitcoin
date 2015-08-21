@@ -33,7 +33,7 @@
             'port' => '18332',
             'protocol' => 'http',
         ]);
-        echo $btc->getNetworkApi()->getAddedNodeInfo(true,'blockexplorer.com:18332');
+        echo $btc->getGeneratingApi()->generate(1);
     }
     catch (RequestException $e) {
         echo "There was a problem. \n".$e->getMessage()."\n\n";
