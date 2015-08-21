@@ -583,11 +583,21 @@ class Wallet extends AbstractApi
         return $this->send('sendtoaddress',[$to,$amount,$comment,$comment_to]);
     }
 
-    public function setAccount()
+    /**
+     * The setaccount RPC puts the specified address in the given account.
+     *
+     * @param string $address The P2PKH or P2SH address to put in the account.
+     * Must already belong to the wallet
+     * @param string $account The name of the account in which the address should
+     * be placed. May be the default account, an empty string (“”)
+     * @return mixed
+     */
+    public function setAccount($address,$account)
     {
-        return $this->send('',[]);
+        return $this->send('setaccount',[$address,$account]);
     }
 
+    
     public function setTxFee()
     {
         return $this->send('',[]);
