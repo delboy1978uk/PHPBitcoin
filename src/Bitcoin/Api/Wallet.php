@@ -262,17 +262,36 @@ class Wallet extends AbstractApi
         return $this->send('importaddress',[$address,$account,$rescan]);
     }
 
+    /**
+     * The importprivkey RPC adds a private key to your wallet. The key should be formatted in
+     * the wallet import format created by the dumpprivkey RPC.
+     *
+     * @param $key
+     * @param string $account
+     * @param bool $rescan
+     * @return mixed
+     */
+    public function importPrivKey($key,$account = '',$rescan = true)
+    {
+        return $this->send('importprivkey',[$key,$account,$rescan]);
+    }
+
+    /**
+     * The importwallet RPC imports private keys from a file in wallet dump file format
+     * (see the dumpwallet RPC). These keys will be added to the keys currently in the
+     * wallet. This call may need to rescan all or parts of the block chain for transactions
+     * affecting the newly-added keys, which may take several minutes.
+     *
+     * @param string $filename The file to import. The path is relative to Bitcoin Core’s
+     * working directory
+     * @return mixed
+     */
+    public function importWallet($filename)
+    {
+        return $this->send('importwallet',[$filename]);
+    }
+
     
-    public function importPrivKey()
-    {
-        return $this->send('',[]);
-    }
-
-    public function importWallet()
-    {
-        return $this->send('',[]);
-    }
-
     public function keyPoolRefill()
     {
         return $this->send('',[]);
