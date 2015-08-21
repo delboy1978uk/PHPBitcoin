@@ -484,10 +484,19 @@ class Wallet extends AbstractApi
         return $this->send('lockunspent',[$unlock,$outputs]);
     }
 
-    
-    public function move()
+    /**
+     * The move RPC moves a specified amount from one account in your wallet to another using
+     * an off-block-chain transaction.
+     *
+     * @param string $from The name of the account to move the funds from
+     * @param string $to The name of the account to move the funds to
+     * @param int $amount The amount of bitcoins to move
+     * @param string $comment A comment to assign to this move payment
+     * @return mixed
+     */
+    public function move($from,$to,$amount,$comment)
     {
-        return $this->send('',[]);
+        return $this->send('move',[$from,$to,$amount,null,$comment]);
     }
 
     public function sendFrom()
