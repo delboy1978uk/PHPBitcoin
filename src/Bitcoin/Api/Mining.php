@@ -77,7 +77,7 @@ class Mining extends AbstractApi
      */
     public function prioritiseTransaction($txid,$priority,$fee)
     {
-        return $this->send('prioritisetransaction',[$this,$priority,$fee]);
+        return $this->send('prioritisetransaction',[$txid,$priority,$fee]);
     }
 
     /**
