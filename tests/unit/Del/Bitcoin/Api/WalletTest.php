@@ -116,5 +116,15 @@ class WalletTest extends \Codeception\TestCase\Test
 
 
 
+    public function testListAccounts()
+    {
+        $info = json_decode($this->api->listAccounts(),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertTrue(is_numeric($info['result']['']));
+    }
+
+
+
+
 
 }
