@@ -437,10 +437,25 @@ class Wallet extends AbstractApi
         return $this->send('listtransactions',[$account,$count,$skip,$inc_watch_only]);
     }
 
-    
-    public function listUnspent()
+    /**
+     * The listunspent RPC returns an array of unspent transaction outputs belonging to this wallet.
+     * Note: as of Bitcoin Core 0.10.0, outputs affecting watch-only addresses will be returned; see
+     * the spendable field in the results described below.
+     *
+     * @param int $min The minimum number of confirmations the transaction containing an output must
+     * have in order to be returned. Use 0 to return outputs from unconfirmed transactions.
+     * Default is 1
+     * @param int $max The maximum number of confirmations the transaction containing an output may
+     * have in order to be returned. Default is 9999999 (~10 million)
+     * @param mixed $addresses either:
+     * Addresses 	array 	Optional(0 or 1) If present, only outputs which pay an address
+     *                                       in this array will be returned
+     * Address 	string Required(1 or more)   A P2PKH or P2SH address
+     * @return mixed
+     */
+    public function listUnspent($min = 1,$max = 9999999,$addresses)
     {
-        return $this->send('',[]);
+        return $this->send('listunspent',[$min,$max,$addresses]);
     }
 
     public function lockUnspent()
