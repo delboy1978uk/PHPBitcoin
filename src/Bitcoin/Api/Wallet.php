@@ -490,18 +490,45 @@ class Wallet extends AbstractApi
      *
      * @param string $from The name of the account to move the funds from
      * @param string $to The name of the account to move the funds to
-     * @param int $amount The amount of bitcoins to move
+     * @param float $amount The amount of bitcoins to move
      * @param string $comment A comment to assign to this move payment
      * @return mixed
      */
-    public function move($from,$to,$amount,$comment)
+    public function move($from,$to,$amount,$comment = '')
     {
         return $this->send('move',[$from,$to,$amount,null,$comment]);
     }
 
-    public function sendFrom()
+    /**
+     * The sendfrom RPC spends an amount from a local account to a bitcoin address.
+     *
+     * @param string $from The name of the account from which the bitcoins should be spent. Use
+     * an empty string (“”) for the default account
+     * @param string $to A P2PKH or P2SH address to which the bitcoins should be sent
+     * @param float $amount The amount to spend in bitcoins. Bitcoin Core will ensure the
+     * account has sufficient bitcoins to pay this amount (but the transaction fee paid is
+     * not included in the calculation, so an account can spend a total of its balance plus
+     * the transaction fee)
+     * @param int $confirmations The minimum number of confirmations an incoming transaction
+     * must have for its outputs to be credited to this account’s balance. Outgoing transactions
+     * are always counted, as are move transactions made with the move RPC. If an account doesn’t
+     * have a balance high enough to pay for this transaction, the payment will be rejected.
+     * Use 0 to spend unconfirmed incoming payments. Default is 1
+     *
+     * Warning: if account1 receives an unconfirmed payment and transfers it to account2 with
+     * the move RPC, account2 will be able to spend those bitcoins even if this parameter is
+     * set to 1 or higher.
+     *
+     * @param string $comment A locally-stored (not broadcast) comment assigned to this
+     * transaction. Default is no comment
+     * @param string $comment_to A locally-stored (not broadcast) comment assigned to this
+     * transaction. Meant to be used for describing who the payment was sent to. Default
+     * is no comment
+     * @return mixed
+     */
+    public function sendFrom($from,$to,$amount,$confirmations = 1,$comment = '',$comment_to = '')
     {
-        return $this->send('',[]);
+        return $this->send('sendfrom',[$from,$to,$amount,$confirmations,$comment,$comment_to]);
     }
 
     public function sendMany()
