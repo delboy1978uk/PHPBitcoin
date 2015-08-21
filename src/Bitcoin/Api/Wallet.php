@@ -531,9 +531,39 @@ class Wallet extends AbstractApi
         return $this->send('sendfrom',[$from,$to,$amount,$confirmations,$comment,$comment_to]);
     }
 
-    public function sendMany()
+    /**
+     * The sendmany RPC creates and broadcasts a transaction which sends outputs
+     * to multiple addresses.
+     *
+     * @param string $from The name of the account from which the bitcoins should be spent.
+     * Use an empty string (“”) for the default account. Bitcoin Core will ensure the account
+     * has sufficient bitcoins to pay the total amount in the outputs field described below
+     * (but the transaction fee paid is not included in the calculation, so an account can
+     * spend a total of its balance plus the transaction fee)
+     * @param mixed $ouputs either:
+     * Outputs 	object 	Required(exactly 1) 	An object containing key/value pairs
+     *                             corresponding to the addresses and amounts to pay
+     * Address/Amount 	string (base58) : number (bitcoins) 	Required(1 or more)
+     *                             A key/value pair with a base58check-encoded string
+     *                             containing the P2PKH or P2SH address to pay as the
+     *                             key, and an amount of bitcoins to pay as the value
+     * @param int $confirmations The minimum number of confirmations an incoming transaction
+     * must have for its outputs to be credited to this account’s balance. Outgoing
+     * transactions are always counted, as are move transactions made with the move RPC.
+     * If an account doesn’t have a balance high enough to pay for this transaction, the
+     * payment will be rejected. Use 0 to spend unconfirmed incoming payments. Default is 1
+     *
+     * Warning: if account1 receives an unconfirmed payment and transfers it to account2 with
+     * the move RPC, account2 will be able to spend those bitcoins even if this parameter is
+     * set to 1 or higher.
+     *
+     * @param string $comment A locally-stored (not broadcast) comment assigned to this
+     * transaction. Default is no comment
+     * @return mixed
+     */
+    public function sendMany($from,$ouputs,$confirmations = 1,$comment = '')
     {
-        return $this->send('',[]);
+        return $this->send('sendmany',[$from,$ouputs,$confirmations,$comment]);
     }
 
     public function sendToAddress()
