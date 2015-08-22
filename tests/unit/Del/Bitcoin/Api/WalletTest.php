@@ -136,5 +136,16 @@ class WalletTest extends \Codeception\TestCase\Test
 
 
 
+    public function testGetReceivedByAccount()
+    {
+        $info = json_decode($this->api->getReceivedByAccount(''),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertTrue(is_numeric($info['result']));
+        $this->assertNull($info['error']);
+    }
+
+
+
+
 
 }

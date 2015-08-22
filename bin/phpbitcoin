@@ -33,7 +33,7 @@
             'port' => '18332',
             'protocol' => 'http',
         ]);
-        echo json_decode($btc->getWalletApi()->getAddressesByAccount(),true)['result'][0];
+        echo $btc->getWalletApi()->getReceivedByAccount('');
     }
     catch (RequestException $e) {
         echo "There was a problem. \n".$e->getMessage()."\n\n";
