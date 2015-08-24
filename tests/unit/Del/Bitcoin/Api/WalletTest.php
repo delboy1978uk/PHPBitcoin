@@ -159,5 +159,17 @@ class WalletTest extends \Codeception\TestCase\Test
 
 
 
+    public function testGetReceivedByAddress()
+    {
+        $address = json_decode($this->api->getNewAddress(),true)['result'];
+        $info = json_decode($this->api->getReceivedByAddress($address),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertTrue(is_numeric($info['result']));
+        $this->assertNull($info['error']);
+    }
+
+
+
+
 
 }
