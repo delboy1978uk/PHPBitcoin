@@ -85,7 +85,7 @@ class WalletTest extends \Codeception\TestCase\Test
 
 
 
-    public function testNewAddress()
+    public function testGetNewAddress()
     {
         $info = json_decode($this->api->getNewAddress(),true);
         $this->assertArrayHasKey('result',$info);
@@ -141,6 +141,18 @@ class WalletTest extends \Codeception\TestCase\Test
         $info = json_decode($this->api->getReceivedByAccount(''),true);
         $this->assertArrayHasKey('result',$info);
         $this->assertTrue(is_numeric($info['result']));
+        $this->assertNull($info['error']);
+    }
+
+
+
+
+    public function testGetAccount()
+    {
+        $address = json_decode($this->api->getNewAddress(),true)['result'];
+        $info = json_decode($this->api->getAccount($address),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertTrue(is_string($info['result']));
         $this->assertNull($info['error']);
     }
 
