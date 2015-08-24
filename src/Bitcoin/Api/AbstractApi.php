@@ -54,7 +54,7 @@ class AbstractApi
      * @param array $params
      * @return mixed
      */
-    protected function send($uri, $params = [])
+    public function send($uri, $params = [])
     {
         /** @var \GuzzleHttp\Psr7\Response $response  */
         $response = $this->getClient()->post('/',[
@@ -74,10 +74,5 @@ class AbstractApi
             ],
         ]);
         return $response->getBody();
-    }
-
-    public function sendRaw($method,$params)
-    {
-        $this->send($method,$params);
     }
 }
