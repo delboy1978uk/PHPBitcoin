@@ -117,7 +117,7 @@ class BlockchainTest extends \Codeception\TestCase\Test
     public function testGetRawMemPool()
     {
         $info = json_decode($this->api->getRawMemPool(true),true);
-        $this->assertArrayHasKey('result',$info);
+        $this->assertArrayHasKey('result',$info);die(var_dump($info));
         $key = array_keys($info['result'])[0];
         $this->assertArrayHasKey('size',$info['result'][$key]);
         $this->assertTrue(is_numeric($info['result'][$key]['size']));
