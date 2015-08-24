@@ -53,6 +53,16 @@ class BlockchainTest extends \Codeception\TestCase\Test
 
 
 
+
+    public function testGetBlockHash()
+    {
+        $info = json_decode($this->api->getBlockHash(0),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertTrue(is_string($info['result']));
+    }
+
+
+
     public function testGetBlockchainInfo()
     {
         $info = json_decode($this->api->getBlockChainInfo(),true);
