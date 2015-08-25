@@ -195,4 +195,29 @@ class WalletTest extends \Codeception\TestCase\Test
 
 
 
+    public function testSignMessage()
+    {
+        $msg = 'Please consider donating to 1De1boyXJzdk4TYmHkR3st6dJmHuEaneHB';
+        $add = json_decode($this->api->getNewAddress(),true)['result'];
+        $info = json_decode($this->api->signMessage($add,$msg),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertTrue(is_string($info['result']));
+        $this->assertNull($info['error']);
+    }
+
+
+
+
+
+    public function testListTransactions()
+    {
+        $info = json_decode($this->api->listTransactions(),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertTrue(is_array($info['result']));
+        $this->assertNull($info['error']);
+    }
+
+
+
+
 }
