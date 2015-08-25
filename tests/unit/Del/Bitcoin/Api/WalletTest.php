@@ -247,7 +247,7 @@ class WalletTest extends \Codeception\TestCase\Test
 
     public function testListReceivedByAddress()
     {
-        $info = json_decode($this->api->listReceivedByAccount(),true);
+        $info = json_decode($this->api->listReceivedByAddress(),true);
         $this->assertArrayHasKey('result',$info);
         $this->assertTrue(is_array($info['result']));
         $this->assertNull($info['error']);
