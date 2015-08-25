@@ -174,9 +174,20 @@ class WalletTest extends \Codeception\TestCase\Test
     public function testListUnspent()
     {
         $add = json_decode($this->api->getNewAddress(),true)['result'];
-        $info = json_decode($this->api->listUnspent(1,9999999,[$add]),true);        $this->assertArrayHasKey('result',$info);
+        $info = json_decode($this->api->listUnspent(1,9999999,[$add]),true);
         $this->assertArrayHasKey('result',$info);
         $this->assertTrue(is_array($info['result']));
+        $this->assertNull($info['error']);
+    }
+
+
+
+
+    public function testSetTxFee()
+    {
+        $info = json_decode($this->api->setTxFee(0.0001),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertTrue($info['result']);
         $this->assertNull($info['error']);
     }
 

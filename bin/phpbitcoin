@@ -34,7 +34,7 @@
             'protocol' => 'http',
         ]);
 //        $add = json_decode($btc->getWalletApi()->getNewAddress(''),true)['result'];
-        echo $btc->getUtilityApi()->estimateFee(1);
+        echo $btc->getWalletApi()->setTxFee(0.0001);
     }
     catch (RequestException $e) {
         echo "There was a problem. \n".$e->getMessage()."\n\n";
