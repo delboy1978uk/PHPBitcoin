@@ -33,7 +33,7 @@
             'port' => '18332',
             'protocol' => 'http',
         ]);
-        echo $btc->getBlockchainApi()->verifyChain(0,1);
+        echo $btc->getBlockchainApi()->getBlock('00000000373403049c5fff2cd653590e8cbe6f7ac639db270e7d1a7503d698df');
     }
     catch (RequestException $e) {
         echo "There was a problem. \n".$e->getMessage()."\n\n";
