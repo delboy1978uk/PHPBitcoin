@@ -34,7 +34,7 @@
             'protocol' => 'http',
         ]);
 //        $add = json_decode($btc->getWalletApi()->getNewAddress(''),true)['result'];
-        echo $btc->getWalletApi()->listReceivedByAddress();
+        echo $btc->getWalletApi()->backupWallet(__DIR__);
     }
     catch (RequestException $e) {
         echo "There was a problem. \n".$e->getMessage()."\n\n";

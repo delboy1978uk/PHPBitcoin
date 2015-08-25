@@ -256,4 +256,46 @@ class WalletTest extends \Codeception\TestCase\Test
 
 
 
+
+    public function testListAddressGroupings()
+    {
+        $info = json_decode($this->api->listAddressGroupings(),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertTrue(is_array($info['result']));
+        $this->assertNull($info['error']);
+    }
+
+
+
+
+
+    public function testDumpWallet()
+    {
+        $file = __DIR__.DIRECTORY_SEPARATOR.'wallet.backup';
+        $info = json_decode($this->api->dumpWallet($file),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertNull($info['result']);
+        $this->assertNull($info['error']);
+        $this->assertTrue(file_exists($file));
+        unlink($file);
+    }
+
+
+
+
+
+    public function testBackupWallet()
+    {
+        $file = __DIR__.DIRECTORY_SEPARATOR.'wallet.dat';
+        $info = json_decode($this->api->backupWallet(__DIR__),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertNull($info['result']);
+        $this->assertNull($info['error']);
+        $this->assertTrue(file_exists($file));
+        unlink($file);
+    }
+
+
+
+
 }
