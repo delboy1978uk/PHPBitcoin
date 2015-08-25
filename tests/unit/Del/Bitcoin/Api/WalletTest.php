@@ -298,4 +298,16 @@ class WalletTest extends \Codeception\TestCase\Test
 
 
 
+
+    public function testListLockUnspent()
+    {
+        $info = json_decode($this->api->listLockUnspent(),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertTrue(is_array($info['result']));
+        $this->assertNull($info['error']);
+    }
+
+
+
+
 }

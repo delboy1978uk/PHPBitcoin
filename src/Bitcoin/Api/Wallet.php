@@ -333,27 +333,12 @@ class Wallet extends AbstractApi
     }
 
     /**
-     * The lockunspent RPC temporarily locks or unlocks specified transaction outputs. A
-     * locked transaction output will not be chosen by automatic coin selection when spending
-     * bitcoins. Locks are stored in memory only, so nodes start with zero locked outputs and
-     * the locked output list is always cleared when a node stops or fails.
-     *
-     * @param bool $unlock Set to false to lock the outputs specified in the following parameter.
-     * Set to true to unlock the outputs specified. If this is the only argument specified and
-     * it is set to true, all outputs will be unlocked; if it is the only argument and is set to
-     * false, there will be no change
-     * @param mixed $outputs either of the 4 below options:
-     * Outputs	array	Optional (0 or 1)	An array of outputs to lock or unlock
-     * Output	object	Required (1 or more)	An object describing a particular output
-     * txid	string	Required (exactly 1)	The TXID of the transaction containing the output
-     *     to lock or unlock, encoded as hex in internal byte order
-     * vout	number (int)	Required(exactly 1)	The output index number (vout) of the output
-     *     to lock or unlock. The first output in a transaction has an index of 0
+     * The listlockunspent RPC returns a list of temporarily unspendable (locked) outputs.
      * @return mixed
      */
-    public function listLockUnspent($unlock,$outputs)
+    public function listLockUnspent()
     {
-        return $this->send('lockunspent',[$unlock,$outputs]);
+        return $this->send('listlockunspent');
     }
 
     /**
