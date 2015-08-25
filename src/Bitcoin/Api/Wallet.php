@@ -299,7 +299,7 @@ class Wallet extends AbstractApi
      */
     public function keyPoolRefill($size)
     {
-        return $this->send('',[$size]);
+        return $this->send('keypoolrefill',[$size]);
     }
 
     /**

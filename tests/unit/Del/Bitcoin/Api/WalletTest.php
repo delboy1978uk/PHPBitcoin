@@ -310,4 +310,17 @@ class WalletTest extends \Codeception\TestCase\Test
 
 
 
+
+    public function testKeyPoolRefill()
+    {
+        $info = json_decode($this->api->keyPoolRefill(1),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertArrayHasKey('error',$info);
+        $this->assertNull($info['result']);
+        $this->assertNull($info['error']);
+    }
+
+
+
+
 }
