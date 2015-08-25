@@ -220,4 +220,40 @@ class WalletTest extends \Codeception\TestCase\Test
 
 
 
+
+    public function testListSinceBlock()
+    {
+        $info = json_decode($this->api->listSinceBlock(),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertArrayHasKey('transactions',$info['result']);
+        $this->assertNull($info['error']);
+    }
+
+
+
+
+
+    public function testListReceivedByAccount()
+    {
+        $info = json_decode($this->api->listReceivedByAccount(),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertTrue(is_array($info['result']));
+        $this->assertNull($info['error']);
+    }
+
+
+
+
+
+    public function testListReceivedByAddress()
+    {
+        $info = json_decode($this->api->listReceivedByAccount(),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertTrue(is_array($info['result']));
+        $this->assertNull($info['error']);
+    }
+
+
+
+
 }
