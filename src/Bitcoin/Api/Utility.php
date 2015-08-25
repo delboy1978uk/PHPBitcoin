@@ -50,7 +50,7 @@ class Utility extends AbstractApi
      * needs in order to be included within a certain number of blocks as
      * a free high-priority transaction.
      *
-     * @param $blocks
+     * @param int $blocks
      * @return mixed
      */
     public function estimatePriority($blocks)

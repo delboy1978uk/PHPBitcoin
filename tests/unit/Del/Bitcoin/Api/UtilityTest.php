@@ -63,4 +63,24 @@ class UtilityTest extends \Codeception\TestCase\Test
     }
 
 
+
+    public function testEstimatePriority()
+    {
+        $info = json_decode($this->api->estimatePriority(1),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertTrue(is_numeric($info['result']));
+        $this->assertNull($info['error']);
+    }
+
+
+
+    public function testEstimateFee()
+    {
+        $info = json_decode($this->api->estimatePriority(1),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertTrue(is_numeric($info['result']));
+        $this->assertNull($info['error']);
+    }
+
+
 }
