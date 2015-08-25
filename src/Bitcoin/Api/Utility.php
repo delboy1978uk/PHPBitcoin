@@ -16,11 +16,18 @@ class Utility extends AbstractApi
      *
      * @param int $num The minimum (m) number of signatures required to
      * spend this m-of-n multisig script
+     * @param array $keys An array of strings with each string being a
+     * public key or address
+     * A public key against which signatures will be checked. If wallet
+     * support is enabled, this may be a P2PKH address belonging to the
+     * wallet—the corresponding public key will be substituted. There must
+     * be at least as many keys as specified by the Required parameter,
+     * and there may be more keys
      * @return mixed
      */
-    public function createMultiSig($num)
+    public function createMultiSig($num,$keys)
     {
-        return $this->send('createmultisig',[$num]);
+        return $this->send('createmultisig',[$num,$keys]);
     }
 
     /**
