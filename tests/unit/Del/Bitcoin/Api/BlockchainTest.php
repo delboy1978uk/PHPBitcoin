@@ -135,5 +135,17 @@ class BlockchainTest extends \Codeception\TestCase\Test
 
 
 
+    public function testVerifyChain()
+    {
+        $info = json_decode($this->api->verifyChain(0,1),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertArrayHasKey('error',$info);
+        $this->assertTrue($info['result']);
+        $this->assertNull($info['error']);
+    }
+
+
+
+
 
 }

@@ -60,7 +60,7 @@ $btc->getRawTransactionApi();
 $btc->getUtilityApi();
 $btc->getWalletApi();
 ```
-Each API has docblock comments from the actual API, so you should get nice code completion.
+Each API has docblock comments from the documentation, so you should get nice code completion.
 However the actual Bitcoin API docs can be found at https://bitcoin.org/en/developer-reference#rpc-quick-reference
 
 ##Usage in ZF2
