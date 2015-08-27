@@ -2,6 +2,7 @@
 
 namespace Del\Bitcoin\Api;
 
+use GuzzleHttp\Exception\ServerException;
 
 class WalletTest extends \Codeception\TestCase\Test
 {
@@ -348,6 +349,23 @@ class WalletTest extends \Codeception\TestCase\Test
         $this->assertArrayHasKey('error',$info);
         $this->assertNull($info['result']);
         $this->assertNull($info['error']);
+    }
+
+
+
+
+
+    public function testSendToAddress()
+    {
+        try {
+            $this->api->sendToAddress('mpXwg4jMtRhuSpVq4xS3HFHmCmWp9NyGKt',1.0,'this will fail, we aint got the funds');
+        } catch (ServerException $e) {
+            $info = json_decode($e->getResponse()->getBody(),true);
+            $this->assertArrayHasKey('result',$info);
+            $this->assertArrayHasKey('error',$info);
+            $this->assertNull($info['result']);
+            $this->assertNotNull($info['error']);
+        }
     }
 
 
