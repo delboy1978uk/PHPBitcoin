@@ -322,5 +322,19 @@ class WalletTest extends \Codeception\TestCase\Test
 
 
 
+    public function testAddMultiSigAddress()
+    {
+        $util = new Utility($this->config);
+        $add = json_decode($this->api->getNewAddress(),true)['result'];
+        $add2 = json_decode($this->api->getNewAddress(),true)['result'];
+        $pub1 = json_decode($util->validateAddress($add),true)['result']['pubkey'];
+        $pub2 = json_decode($util->validateAddress($add2),true)['result']['pubkey'];
+        $info = json_decode($this->api->addMultiSigAddress(2,[$pub1,$pub2]),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertArrayHasKey('error',$info);
+        $this->assertTrue(is_string($info['result']));
+        $this->assertNull($info['error']);
+    }
+
 
 }
