@@ -337,4 +337,18 @@ class WalletTest extends \Codeception\TestCase\Test
     }
 
 
+
+
+
+    public function testSetAccount()
+    {
+        $add = json_decode($this->api->getNewAddress(),true)['result'];
+        $info = json_decode($this->api->setAccount($add,'delboy1978uk'),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertArrayHasKey('error',$info);
+        $this->assertNull($info['result']);
+        $this->assertNull($info['error']);
+    }
+
+
 }

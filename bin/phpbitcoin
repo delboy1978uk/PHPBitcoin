@@ -33,9 +33,8 @@
             'port' => '18332',
             'protocol' => 'http',
         ]);
-        $add1 = json_decode($btc->getUtilityApi()->validateAddress(json_decode($btc->getWalletApi()->getNewAddress(''),true)['result']),true)['result']['pubkey'];
-        $add2 = json_decode($btc->getUtilityApi()->validateAddress(json_decode($btc->getWalletApi()->getNewAddress(''),true)['result']),true)['result']['pubkey'];
-        echo $btc->getWalletApi()->addMultiSigAddress(2,[$add1,$add2]);
+        $add = json_decode($btc->getWalletApi()->getNewAddress(''),true)['result'];
+        echo $btc->getWalletApi()->setAccount($add,'delboy');
     }
     catch (RequestException $e) {
         echo "There was a problem. \n".$e->getMessage()."\n\n";
