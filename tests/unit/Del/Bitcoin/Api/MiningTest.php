@@ -2,6 +2,8 @@
 
 namespace Del\Bitcoin\Api;
 
+use GuzzleHttp\Exception\ServerException;
+
 class MiningTest extends \Codeception\TestCase\Test
 {
    /**
@@ -55,8 +57,13 @@ class MiningTest extends \Codeception\TestCase\Test
 
     public function testGetBlockTemplate()
     {
-        $info = json_decode($this->api->getBlockTemplate(),true);
-        $this->assertArrayHasKey('capabilities',$info['result']);
+        try {
+            $info = json_decode($this->api->getBlockTemplate(),true);
+            $this->assertArrayHasKey('capabilities',$info['result']);
+        } catch (ServerException $e) {
+            $info = json_decode($e->getResponse()->getBody(),true);
+            die(var_dump($info));
+        }
     }
 
 }
