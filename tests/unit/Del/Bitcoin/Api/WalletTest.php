@@ -362,9 +362,40 @@ class WalletTest extends \Codeception\TestCase\Test
         } catch (ServerException $e) {
             $info = json_decode($e->getResponse()->getBody(),true);
             $this->assertArrayHasKey('result',$info);
-            $this->assertArrayHasKey('error',$info);
             $this->assertNull($info['result']);
-            $this->assertNotNull($info['error']);
+            $this->assertArrayHasKey('error',$info);
+            $this->assertArrayHasKey('code',$info['error']);
+            $this->assertArrayHasKey('message',$info['error']);
+            $this->assertTrue($info['error']['code'] == -6);
+            $this->assertTrue($info['error']['message'] == 'Insufficient funds');
+        }
+    }
+
+
+
+
+
+    public function testSendMany()
+    {
+        try {
+            $add1 = json_decode($this->api->getNewAddress(),true)['result'];
+            $add2 = json_decode($this->api->getNewAddress(),true)['result'];
+            $this->api->sendMany('',
+                [
+                    $add1 => 100,
+                    $add2 => 100,
+                ]
+                ,1,'this will fail, we aint got the funds'
+            );
+        } catch (ServerException $e) {
+            $info = json_decode($e->getResponse()->getBody(),true);
+            $this->assertArrayHasKey('result',$info);
+            $this->assertNull($info['result']);
+            $this->assertArrayHasKey('error',$info);
+            $this->assertArrayHasKey('code',$info['error']);
+            $this->assertArrayHasKey('message',$info['error']);
+            $this->assertTrue($info['error']['code'] == -6);
+            $this->assertTrue($info['error']['message'] == 'Account has insufficient funds');
         }
     }
 

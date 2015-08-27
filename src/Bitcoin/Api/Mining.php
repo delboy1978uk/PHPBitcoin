@@ -24,7 +24,7 @@ class Mining extends AbstractApi
      */
     public function getBlockTemplate(array $params = ['capabilities' => ['coinbasetxn', 'workid', 'coinbase/append']])
     {
-        return $this->send('getblocktemplate',$params);
+        return $this->send('getblocktemplate',[$params]);
     }
 
     /**
