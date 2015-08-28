@@ -33,15 +33,8 @@
             'port' => '18332',
             'protocol' => 'http',
         ]);
-        $add1 = json_decode($btc->getWalletApi()->getNewAddress(),true)['result'];
-        $add2 = json_decode($btc->getWalletApi()->getNewAddress(),true)['result'];
-        echo $btc->getWalletApi()->sendMany('',
-            [
-                $add1 => 100,
-                $add2 => 100,
-            ]
-            ,1,'this will fail, we aint got the funds'
-        );
+        $add = json_decode($btc->getWalletApi()->getNewAddress(),true)['result'];
+        echo $btc->getUtilityApi()->verifyMessage($add);
     }
     catch (RequestException $e) {
         echo "There was a problem. \n".$e->getMessage()."\n\n";

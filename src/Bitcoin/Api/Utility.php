@@ -81,10 +81,14 @@ class Utility extends AbstractApi
      * will be reconstructed from from the signature; each key will be hashed
      * and compared against the P2PKH address provided to see if any of them
      * match. If there are no matches, signature validation will fail.
+     * @param string $signature The signature created by the signer encoded
+     * as base-64 (the format output by the signmessage RPC)
+     * @param string $message The message exactly as it was signed (e.g. no
+     * extra whitespace)
      * @return mixed
      */
-    public function verifyMessage($address)
+    public function verifyMessage($address, $signature, $message)
     {
-        return $this->send('verifymessage',[$address]);
+        return $this->send('verifymessage',[$address,$signature,$message]);
     }
 }

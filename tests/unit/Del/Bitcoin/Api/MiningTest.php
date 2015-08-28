@@ -72,4 +72,31 @@ class MiningTest extends \Codeception\TestCase\Test
         }
     }
 
+
+    public function testGetNetworkHashPS()
+    {
+        $info = json_decode($this->api->getNetworkHashPS(10,1),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertArrayHasKey('error',$info);
+        $this->assertTrue(is_numeric($info['result']));
+        $this->assertNull($info['error']);
+    }
+
+
+    public function testSubmitBlock()
+    {
+        try {
+            $this->api->submitBlock('This is not a block');
+        } catch (ServerException $e) {
+            $info = json_decode($e->getResponse()->getBody(),true);
+            $this->assertArrayHasKey('result',$info);
+            $this->assertNull($info['result']);
+            $this->assertArrayHasKey('error',$info);
+            $this->assertArrayHasKey('code',$info['error']);
+            $this->assertArrayHasKey('message',$info['error']);
+            $this->assertTrue($info['error']['code'] == -22);
+            $this->assertTrue($info['error']['message'] == 'Block decode failed');
+        }
+    }
+
 }
