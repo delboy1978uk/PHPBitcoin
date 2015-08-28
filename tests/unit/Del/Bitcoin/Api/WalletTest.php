@@ -414,4 +414,24 @@ class WalletTest extends \Codeception\TestCase\Test
     }
 
 
+
+
+
+    public function testSendFrom()
+    {
+        try {
+            $this->api->sendFrom('','mpXwg4jMtRhuSpVq4xS3HFHmCmWp9NyGKt',100,1,'this will fail, we aint got the funds');
+        } catch (ServerException $e) {
+            $info = json_decode($e->getResponse()->getBody(),true);
+            $this->assertArrayHasKey('result',$info);
+            $this->assertNull($info['result']);
+            $this->assertArrayHasKey('error',$info);
+            $this->assertArrayHasKey('code',$info['error']);
+            $this->assertArrayHasKey('message',$info['error']);
+            $this->assertTrue($info['error']['code'] == -6);
+            $this->assertTrue($info['error']['message'] == 'Account has insufficient funds');
+        }
+    }
+
+
 }

@@ -3,6 +3,8 @@
 namespace Del\Bitcoin\Api;
 
 
+use GuzzleHttp\Exception\ServerException;
+
 class NetworkTest extends \Codeception\TestCase\Test
 {
    /**
@@ -94,15 +96,32 @@ class NetworkTest extends \Codeception\TestCase\Test
 
     public function testAddNode()
     {
-        $info = json_decode($this->api->addNode('blockexplorer.com:18332','add'),true);
-        $this->assertArrayHasKey('result',$info);
-        $this->assertNull($info['result']);
-        $this->assertNull($info['error']);
+        try{
+            $info = json_decode($this->api->addNode('blockexplorer.com:18332','add'),true);
+            $this->assertArrayHasKey('result',$info);
+            $this->assertNull($info['result']);
+            $this->assertNull($info['error']);
 
-        $info = json_decode($this->api->addNode('blockexplorer.com:18332','remove'),true);
-        $this->assertArrayHasKey('result',$info);
-        $this->assertNull($info['result']);
-        $this->assertNull($info['error']);
+            $info = json_decode($this->api->addNode('blockexplorer.com:18332','remove'),true);
+            $this->assertArrayHasKey('result',$info);
+            $this->assertNull($info['result']);
+            $this->assertNull($info['error']);
+        } catch (ServerException $e) {
+            $info = json_decode($e->getResponse()->getBody(),true);
+            $this->assertArrayHasKey('result',$info);
+            $this->assertNull($info['result']);
+            $this->assertArrayHasKey('error',$info);
+            $this->assertArrayHasKey('code',$info['error']);
+            $this->assertArrayHasKey('message',$info['error']);
+            $this->assertEquals($info['error']['code'],-23);
+            $this->assertEquals($info['error']['message'],'Error: Node already added');
+
+            $info = json_decode($this->api->addNode('blockexplorer.com:18332','remove'),true);
+            $this->assertArrayHasKey('result',$info);
+            $this->assertNull($info['result']);
+            $this->assertNull($info['error']);
+        }
+
     }
 
 
