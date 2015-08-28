@@ -33,8 +33,8 @@
             'port' => '18332',
             'protocol' => 'http',
         ]);
-        $add = json_decode($btc->getWalletApi()->getNewAddress(),true)['result'];
-        echo $btc->getUtilityApi()->verifyMessage($add);
+        $btc->getWalletApi()->backupWallet(__DIR__);
+        echo $btc->getWalletApi()->importWallet(__DIR__.DIRECTORY_SEPARATOR.'wallet.dat');
     }
     catch (RequestException $e) {
         echo "There was a problem. \n".$e->getMessage()."\n\n";

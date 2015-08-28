@@ -298,6 +298,20 @@ class WalletTest extends \Codeception\TestCase\Test
 
 
 
+    public function testImportWallet()
+    {
+        $file = __DIR__.DIRECTORY_SEPARATOR.'wallet.dat';
+        $this->api->backupWallet(__DIR__);
+        $info = json_decode($this->api->importWallet($file),true);
+        $this->assertArrayHasKey('result',$info);
+        $this->assertArrayHasKey('error',$info);
+        $this->assertNull($info['result']);
+        $this->assertNull($info['error']);
+        unlink($file);
+    }
+
+
+
 
 
     public function testListLockUnspent()
