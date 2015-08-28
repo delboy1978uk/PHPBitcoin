@@ -62,7 +62,13 @@ class MiningTest extends \Codeception\TestCase\Test
             $this->assertArrayHasKey('capabilities',$info['result']);
         } catch (ServerException $e) {
             $info = json_decode($e->getResponse()->getBody(),true);
-            die(var_dump($info));
+            $this->assertArrayHasKey('result',$info);
+            $this->assertNull($info['result']);
+            $this->assertArrayHasKey('error',$info);
+            $this->assertArrayHasKey('code',$info['error']);
+            $this->assertArrayHasKey('message',$info['error']);
+            $this->assertTrue($info['error']['code'] == -10);
+            $this->assertTrue($info['error']['message'] == 'Bitcoin is downloading blocks...');
         }
     }
 
